@@ -4,12 +4,12 @@ public class Pokemon {
     private String nom;
     private int PC;
     private int PV;
-    private Type[] type;
+    private String[] type;
     private int stade_evo=1;
     private final int EVO_MAX;
     private String[] next_evo;
 
-    public Pokemon(String nom,int PC,int PV,Type[] type,int stade_evo,int EVO_MAX,String[] next_evo){
+    public Pokemon(String nom,int PC,int PV,String[] type,int stade_evo,int EVO_MAX,String[] next_evo){
         this.EVO_MAX=EVO_MAX;
         this.next_evo=next_evo;
         this.stade_evo=stade_evo;
@@ -39,7 +39,7 @@ public class Pokemon {
         return stade_evo;
     }
 
-    public Type[] getType() {
+    public String[] getType() {
         return type;
     }
 
@@ -50,7 +50,8 @@ public class Pokemon {
     public void evoluer(){
         if(getStade_evo()<getEVO_MAX()){
             stade_evo+=1;
-            nom=getNom()[0];
+            nom=getNext_evo()[0];
+            getNext_evo()[0].
         }
     }
     
