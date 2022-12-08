@@ -1,22 +1,28 @@
-import java.io.ObjectInputStream.GetField;
-
+import java.util.Random;
+import java.util.ArrayList;
 public class Pokemon {
     private String nom;
     private int PC;
     private int PV;
-    private String[] type;
+    private ArrayList <String> type=new ArrayList<>(2);
     private int stade_evo=1;
     private final int EVO_MAX;
-    private String[] next_evo;
+    private ArrayList <String> next_evo=new ArrayList<>(2);
+    private ArrayList <String> changement=new ArrayList<>(2);
 
-    public Pokemon(String nom,int PC,int PV,String[] type,int stade_evo,int EVO_MAX,String[] next_evo){
+    public Pokemon(String nom,ArrayList<String> type,int EVO_MAX,ArrayList<String> next_evo){
+        Random r =new Random();
         this.EVO_MAX=EVO_MAX;
         this.next_evo=next_evo;
-        this.stade_evo=stade_evo;
-        this.PC=PC;
-        this.PV=PV;
+        this.PC=r.nextInt(5);
+        this.PV=r.nextInt(5);
         this.type=type;
         this.nom=nom;
+    }
+
+    public Pokemon(String nom,ArrayList<String> type,int EVO_MAX,ArrayList<String> next_evo,ArrayList<String> changement){
+        this(nom,type,EVO_MAX,next_evo);
+        this.changement=changement;
     }
 
     public int getEVO_MAX() {
@@ -39,19 +45,38 @@ public class Pokemon {
         return stade_evo;
     }
 
-    public String[] getType() {
-        return type;
+    public ArrayList<String> getChangement() {
+        return changement;
     }
 
-    public String[] getNext_evo() {
+    public ArrayList<String> getNext_evo() {
         return next_evo;
     }
 
+    public ArrayList<String> getType() {
+        return type;
+    }
+
     public void evoluer(){
-        if(getStade_evo()<getEVO_MAX()){
+        Random r =new Random();
+        if(stade_evo<EVO_MAX){
             stade_evo+=1;
-            nom=getNext_evo()[0];
-            getNext_evo()[0].
+            nom=next_evo.get(stade_evo-2);
+            PC+=r.nextInt(5);
+            PV+=r.nextInt(5);
+            if(!(changement.isEmpty())){
+                if(stade_evo==Integer.parseInt(changement.get(0))){
+                    type.clear();
+                    type.add(changement.get(1));
+                    type.add(changement.get(2));
+
+                }
+                
+            }
+        }
+        else{
+            PC+=r.nextInt(5);
+            PV+=r.nextInt(5);
         }
     }
     
