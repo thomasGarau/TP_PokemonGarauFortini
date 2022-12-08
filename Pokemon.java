@@ -9,8 +9,9 @@ public class Pokemon {
     private final int EVO_MAX;
     private ArrayList <String> next_evo=new ArrayList<>(2);
     private ArrayList <String> changement=new ArrayList<>(2);
-    private ArrayList<Competence> competence = new ArrayList<>();
     private Dresseur dresseur; 
+    private ArrayList <Competence> competence = new ArrayList<>(4);
+    
 
     //constructeur de pokemon moule
     public Pokemon(String nom,ArrayList<String> type,int EVO_MAX,ArrayList<String> next_evo){
@@ -18,6 +19,8 @@ public class Pokemon {
         this.next_evo=next_evo;
         this.type=type;
         this.nom=nom;
+        Competence griffe=new Competence("griffe", "normal");
+        competence.add(griffe);
     }
 
     //constructeur de pokemon moule avec changement de type à l'évolution
@@ -36,7 +39,9 @@ public class Pokemon {
         this.competence = pokemon.getCompetence();
         this.pc = 10 + r.nextInt(20);
         this.pv = 50 + r.nextInt(50);
-        this.dresseur = dresseur;      
+        this.dresseur = dresseur;
+        Competence griffe=new Competence("griffe", "normal");
+        this.competence.add(griffe);  
     }
 
     //constructeur d'instance pokemon reel avec changement de type à l'évolution
@@ -79,6 +84,10 @@ public class Pokemon {
 
     public ArrayList<String> getType() {
         return type;
+    }
+
+    public ArrayList<Competence> getCompetences() {
+        return competence;
     }
 
     public void evoluer(){
