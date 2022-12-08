@@ -28,6 +28,7 @@ public class Client
         }
         String line = "";
                 
+        //boucle input principal ->inserer jeu ici
         while (!line.equals("Over"))
         {
             try
