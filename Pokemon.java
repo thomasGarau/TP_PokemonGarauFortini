@@ -112,5 +112,77 @@ public class Pokemon {
             pv+= 2 + r.nextInt(3);
         }
     }
+
+    public int assignComp(String type){
+        Competence charge=new Competence("charge", "normal");
+        Competence flameche=new Competence("flameche", "feu");
+        Competence bulles_do=new Competence("bulles'do", "eau");
+        Competence tranch_herbe=new Competence("tranch'herbe", "plante");
+        Competence eclair=new Competence("éclair", "electrik");
+        Competence poing_glace=new Competence("poing glace", "glace");
+        Competence balayette=new Competence("balayette", "combat");
+        Competence dard_venin=new Competence("dard venin", "poison");
+        Competence tunnel=new Competence("tunnel", "sol");
+        Competence picpic=new Competence("picpic", "vol");
+        Competence psyko=new Competence("psyko", "psy");
+        Competence dard_nue=new Competence("dard nuée", "insecte");
+        Competence eboulement=new Competence("éboulement", "roche");
+        Competence griffe_ombre=new Competence("griffe ombre", "spectre");
+        Competence draco_griffe=new Competence("draco-griffe", "dragon");
+        Competence machouille=new Competence("machouille", "ténèbres");
+        Competence gyroballe=new Competence("gyroballe", "acier");
+        if(type=="normal"){
+            competence.add(charge);
+            return 0;
+        }
+        else if(type=="feu"){
+            return 1;
+        }
+        else if(type=="eau"){
+            return 2;
+        }
+        else if(type=="plante"){
+            return 3;
+        }
+        else if(type=="électrick"){
+            return 4;
+        }
+        else if(type=="glace"){
+            return 5;
+        }
+        else if(type=="combat"){
+            return 6;
+        }
+        else if(type=="poison"){
+            return 7;
+        }
+        else if(type=="sol"){
+            return 8;
+        }
+        else if(type=="vol"){
+            return 9;
+        }
+        else if(type=="psy"){
+            return 10;
+        }
+        else if(type=="insecte"){
+            return 11;
+        }
+        else if(type=="roche"){
+            return 12;
+        }
+        else if(type=="spectre"){
+            return 13;
+        }
+        else if(type=="dragon"){
+            return 14;
+        }
+        else if(type=="ténèbres"){
+            return 15;
+        }
+        else {
+            return 16;
+        }    
+    }
     
 }
