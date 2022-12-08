@@ -2,30 +2,56 @@ import java.util.Random;
 import java.util.ArrayList;
 public class Pokemon {
     private String nom;
-    private int PC;
-    private int PV;
+    private int pc;
+    private int pv;
     private ArrayList <String> type=new ArrayList<>(2);
     private int stade_evo=1;
     private final int EVO_MAX;
     private ArrayList <String> next_evo=new ArrayList<>(2);
     private ArrayList <String> changement=new ArrayList<>(2);
+    private Dresseur dresseur; 
+    private ArrayList <Competence> competence = new ArrayList<>(4);
     
+
+    //constructeur de pokemon moule
     public Pokemon(String nom,ArrayList<String> type,int EVO_MAX,ArrayList<String> next_evo){
-        Random r =new Random();
         this.EVO_MAX=EVO_MAX;
         this.next_evo=next_evo;
-        this.PC=r.nextInt(5);
-        this.PV=r.nextInt(5);
         this.type=type;
         this.nom=nom;
-        ArrayList <Competence> competence=new ArrayList<>(4);
         Competence griffe=new Competence("griffe", "normal");
         competence.add(griffe);
     }
 
+    //constructeur de pokemon moule avec changement de type à l'évolution
     public Pokemon(String nom,ArrayList<String> type,int EVO_MAX,ArrayList<String> next_evo,ArrayList<String> changement){
         this(nom,type,EVO_MAX,next_evo);
         this.changement=changement;
+    }
+
+    //constructeur d'instance pokemon reel
+    public Pokemon(Pokemon pokemon, Dresseur dresseur){
+        Random r =new Random();
+        this.nom = pokemon.getNom();
+        this.type = pokemon.getType();
+        this.EVO_MAX = pokemon.getEVO_MAX();
+        this.next_evo = pokemon.getNext_evo();
+        this.competence = pokemon.getCompetence();
+        this.pc = 10 + r.nextInt(20);
+        this.pv = 50 + r.nextInt(50);
+        this.dresseur = dresseur;
+        Competence griffe=new Competence("griffe", "normal");
+        this.competence.add(griffe);  
+    }
+
+    //constructeur d'instance pokemon reel avec changement de type à l'évolution
+    public Pokemon(Pokemon pokemon, Dresseur dresseur, ArrayList<String> changement){
+        this(pokemon, dresseur);
+        this.changement = changement;
+    }
+
+    public ArrayList<Competence> getCompetence() {
+        return competence;
     }
 
     public int getEVO_MAX() {
@@ -36,12 +62,12 @@ public class Pokemon {
         return nom;
     }
 
-    public int getPC() {
-        return PC;
+    public int getpc() {
+        return pc;
     }
 
-    public int getPV() {
-        return PV;
+    public int getpv() {
+        return pv;
     }
 
     public int getStade_evo() {
@@ -64,29 +90,40 @@ public class Pokemon {
         return competence;
     }
 
-    public void assignComp(String type){
-        Competence charge=new Competence("charge", "normal");
-        Competence flameche=new Competence("flameche", "feu");
-        Competence bulles_do=new Competence("bulles'do", "eau");
-        Competence tranch_herbe=new Competence("tranch'herbe", "plante");
-        Competence eclair=new Competence("éclair", "electrik");
-        Competence poing_glace=new Competence("poing glace", "glace");
-        Competence balayette=new Competence("balayette", "combat");
-        Competence dard_venin=new Competence("dard venin", "poison");
-        Competence tunnel=new Competence("tunnel", "sol");
-        Competence picpic=new Competence("picpic", "vol");
-        Competence psyko=new Competence("psyko", "psy");
-        Competence dard_nue=new Competence("dard nuée", "insecte");
-        Competence eboulement=new Competence("éboulement", "roche");
-        Competence griffe_ombre=new Competence("griffe ombre", "spectre");
-        Competence draco_griffe=new Competence("draco-griffe", "dragon");
-        Competence machouille=new Competence("machouille", "ténèbres");
-        Competence gyroballe=new Competence("gyroballe", "acier");
+    public void evoluer(){
+        Random r =new Random();
+        if(stade_evo<EVO_MAX){
+            stade_evo+=1;
+            nom=next_evo.get(stade_evo-2);
+            pc+= 4 + r.nextInt(3);
+            pv+= 12 + r.nextInt(12);
+            if(!(changement.isEmpty())){
+                if(stade_evo==Integer.parseInt(changement.get(0))){
+                    type.clear();
+                    type.add(changement.get(1));
+                    type.add(changement.get(2));
+
+                }
+                
+            }
+        }
+        else{
+            pc+= 1 + r.nextInt(1);
+            pv+= 2 + r.nextInt(3);
+        }
+    }
+
+    public int assignComp(String type){
+
         if(type=="normal"){
+            Competence charge = new Competence(Pokedex.getCompetence("charge"));
             competence.add(charge);
+            return 0;
         }
         else if(type=="feu"){
-            return 1;
+            Competence flameche = new Competence(Pokedex.getCompetence("flameche"));
+            competence.add(flameche);
+            return 0;
         }
         else if(type=="eau"){
             return 2;
@@ -133,29 +170,6 @@ public class Pokemon {
         else {
             return 16;
         }    
-    }
-
-    public void evoluer(){
-        Random r =new Random();
-        if(stade_evo<EVO_MAX){
-            stade_evo+=1;
-            nom=next_evo.get(stade_evo-2);
-            PC+=r.nextInt(5);
-            PV+=r.nextInt(5);
-            if(!(changement.isEmpty())){
-                if(stade_evo==Integer.parseInt(changement.get(0))){
-                    type.clear();
-                    type.add(changement.get(1));
-                    type.add(changement.get(2));
-
-                }
-                
-            }
-        }
-        else{
-            PC+=r.nextInt(5);
-            PV+=r.nextInt(5);
-        }
     }
     
 }

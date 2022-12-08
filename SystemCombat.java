@@ -94,10 +94,10 @@ public class SystemCombat {
             type_def.add(getNum(def.getType().get(i)));
         }
         if(type_def.size()==1){
-           return att.getPC()*(tableType[choix][type_def.get(0)]); 
+           return att.getpc()*(tableType[choix][type_def.get(0)]); 
         }
         else{
-            return att.getPC()*(tableType[choix][type_def.get(0)]*tableType[choix][type_def.get(1)]);
+            return att.getpc()*(tableType[choix][type_def.get(0)]*tableType[choix][type_def.get(1)]);
         }
         
     }
