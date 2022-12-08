@@ -1,9 +1,12 @@
 import java.util.*;
 
 public class Pokedex {
-    private ArrayList<Pokemon> pokedex;
+    private static ArrayList<Pokemon> pokedex;
+    private static ArrayList<Competence> listeCompetence;
     
     public Pokedex(){
+        //initialise tout les "moules" d'instance de pokemon
+        //comprend la liste des 151 premier pokemon à l'exception d'aqualy pyroli voltali
         Pokemon pokemon1 = new Pokemon("bulbizarre", new ArrayList<String>(List.of("plante","poison")), 3, new ArrayList<String>(List.of("herbizarre","florizarre")));
         Pokemon pokemon2 = new Pokemon("salameche", new ArrayList<String>(List.of("feu")), 3, new ArrayList<String>(List.of("reptincel","dracaufeu")), new ArrayList<String>(List.of("3", "feu", "vol")));
         Pokemon pokemon3 = new Pokemon("carapuce", new ArrayList<String>(List.of("eau")) , 3, new ArrayList<String>(List.of("carabaffe","tortank")));
@@ -82,7 +85,7 @@ public class Pokedex {
         Pokemon pokemon76 = new Pokemon("mew", new ArrayList<String>(List.of("psy")) , 3, new ArrayList<String>());
 
 
-
+        //ajoute l'intégralité des pokemon à la liste pokedex
         this.pokedex = new ArrayList<>(List.of(
             pokemon1, pokemon2, pokemon3, pokemon4, pokemon5, pokemon6, pokemon7, pokemon8, pokemon9, 
             pokemon10, pokemon11, pokemon12, pokemon13, pokemon14, pokemon15, pokemon16, pokemon17, pokemon18, pokemon19,
@@ -93,6 +96,41 @@ public class Pokedex {
             pokemon60, pokemon61, pokemon62, pokemon63, pokemon64, pokemon65, pokemon66, pokemon67, pokemon68, pokemon69,
             pokemon70, pokemon71, pokemon72, pokemon73, pokemon74, pokemon75, pokemon76
         ));
+
+
+        //initialise les moule d'instance de compétences (une par type)
+        Competence charge=new Competence("charge", "normal");
+        Competence flameche=new Competence("flameche", "feu");
+        Competence bulles_do=new Competence("bulles'do", "eau");
+        Competence tranch_herbe=new Competence("tranch'herbe", "plante");
+        Competence eclair=new Competence("éclair", "electrik");
+        Competence poing_glace=new Competence("poing glace", "glace");
+        Competence balayette=new Competence("balayette", "combat");
+        Competence dard_venin=new Competence("dard venin", "poison");
+        Competence tunnel=new Competence("tunnel", "sol");
+        Competence picpic=new Competence("picpic", "vol");
+        Competence psyko=new Competence("psyko", "psy");
+        Competence dard_nue=new Competence("dard nuée", "insecte");
+        Competence eboulement=new Competence("éboulement", "roche");
+        Competence griffe_ombre=new Competence("griffe ombre", "spectre");
+        Competence draco_griffe=new Competence("draco-griffe", "dragon");
+        Competence machouille=new Competence("machouille", "ténèbres");
+        Competence gyroballe=new Competence("gyroballe", "acier");
+
+        //ajoute toute les compétences à la liste de compétence
+        this.listeCompetence = new ArrayList<>(List.of(
+            charge, flameche, bulles_do,tranch_herbe, eclair, poing_glace, balayette, dard_venin,tunnel,
+            picpic, psyko, dard_nue, eboulement, griffe_ombre, draco_griffe, machouille, gyroballe
+        ));
+    }
+
+    public static Competence getCompetence(String nom){
+        for(int i=0; i < listeCompetence.size(); i++){
+            if(listeCompetence.indexOf(i).getNom().equals(nom)){
+                return listeCompetence.indexOf(i);
+            }
+        }
+        return null;
     }
 
 

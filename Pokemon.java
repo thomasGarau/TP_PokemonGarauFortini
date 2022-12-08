@@ -114,29 +114,16 @@ public class Pokemon {
     }
 
     public int assignComp(String type){
-        Competence charge=new Competence("charge", "normal");
-        Competence flameche=new Competence("flameche", "feu");
-        Competence bulles_do=new Competence("bulles'do", "eau");
-        Competence tranch_herbe=new Competence("tranch'herbe", "plante");
-        Competence eclair=new Competence("éclair", "electrik");
-        Competence poing_glace=new Competence("poing glace", "glace");
-        Competence balayette=new Competence("balayette", "combat");
-        Competence dard_venin=new Competence("dard venin", "poison");
-        Competence tunnel=new Competence("tunnel", "sol");
-        Competence picpic=new Competence("picpic", "vol");
-        Competence psyko=new Competence("psyko", "psy");
-        Competence dard_nue=new Competence("dard nuée", "insecte");
-        Competence eboulement=new Competence("éboulement", "roche");
-        Competence griffe_ombre=new Competence("griffe ombre", "spectre");
-        Competence draco_griffe=new Competence("draco-griffe", "dragon");
-        Competence machouille=new Competence("machouille", "ténèbres");
-        Competence gyroballe=new Competence("gyroballe", "acier");
+
         if(type=="normal"){
+            Competence charge = new Competence(Pokedex.getCompetence("charge"));
             competence.add(charge);
             return 0;
         }
         else if(type=="feu"){
-            return 1;
+            Competence flameche = new Competence(Pokedex.getCompetence("flameche"));
+            competence.add(flameche);
+            return 0;
         }
         else if(type=="eau"){
             return 2;
