@@ -113,62 +113,75 @@ public class Pokemon {
         }
     }
 
-    public int assignComp(String type){
+    public void assignComp(String type){
 
         if(type=="normal"){
             Competence charge = new Competence(Pokedex.getCompetence("charge"));
             competence.add(charge);
-            return 0;
         }
         else if(type=="feu"){
             Competence flameche = new Competence(Pokedex.getCompetence("flameche"));
             competence.add(flameche);
-            return 0;
         }
         else if(type=="eau"){
-            return 2;
+            Competence tranch_herbe= new Competence(Pokedex.getCompetence("tranch'herbe"));
+            competence.add(tranch_herbe);
         }
         else if(type=="plante"){
-            return 3;
+            Competence flameche = new Competence(Pokedex.getCompetence("flameche"));
+            competence.add(flameche);
         }
         else if(type=="électrick"){
-            return 4;
+            Competence flameche = new Competence(Pokedex.getCompetence("flameche"));
+            competence.add(flameche);
         }
         else if(type=="glace"){
-            return 5;
+            Competence flameche = new Competence(Pokedex.getCompetence("flameche"));
+            competence.add(flameche);
         }
         else if(type=="combat"){
-            return 6;
+            Competence flameche = new Competence(Pokedex.getCompetence("flameche"));
+            competence.add(flameche);
         }
         else if(type=="poison"){
-            return 7;
+            Competence flameche = new Competence(Pokedex.getCompetence("flameche"));
+            competence.add(flameche);
         }
         else if(type=="sol"){
-            return 8;
+            Competence flameche = new Competence(Pokedex.getCompetence("flameche"));
+            competence.add(flameche);
         }
         else if(type=="vol"){
-            return 9;
+            Competence flameche = new Competence(Pokedex.getCompetence("flameche"));
+            competence.add(flameche);
         }
         else if(type=="psy"){
-            return 10;
+            Competence flameche = new Competence(Pokedex.getCompetence("flameche"));
+            competence.add(flameche);
         }
         else if(type=="insecte"){
-            return 11;
+            Competence flameche = new Competence(Pokedex.getCompetence("flameche"));
+            competence.add(flameche);
         }
         else if(type=="roche"){
-            return 12;
+            Competence flameche = new Competence(Pokedex.getCompetence("flameche"));
+            competence.add(flameche);
         }
         else if(type=="spectre"){
-            return 13;
+            Competence flameche = new Competence(Pokedex.getCompetence("flameche"));
+            competence.add(flameche);
         }
         else if(type=="dragon"){
-            return 14;
+            Competence flameche = new Competence(Pokedex.getCompetence("flameche"));
+            competence.add(flameche);
         }
         else if(type=="ténèbres"){
-            return 15;
+            Competence flameche = new Competence(Pokedex.getCompetence("flameche"));
+            competence.add(flameche);
         }
         else {
-            return 16;
+            Competence flameche = new Competence(Pokedex.getCompetence("flameche"));
+            competence.add(flameche);
         }    
     }
     

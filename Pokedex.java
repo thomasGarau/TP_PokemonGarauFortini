@@ -6,7 +6,7 @@ public class Pokedex {
     
     public Pokedex(){
         //initialise tout les "moules" d'instance de pokemon
-        //comprend la liste des 151 premier pokemon à l'exception d'aqualy pyroli voltali
+        //comprend la liste des 151 premier pokemon à l'exception d'aquali pyroli voltali
         Pokemon pokemon1 = new Pokemon("bulbizarre", new ArrayList<String>(List.of("plante","poison")), 3, new ArrayList<String>(List.of("herbizarre","florizarre")));
         Pokemon pokemon2 = new Pokemon("salameche", new ArrayList<String>(List.of("feu")), 3, new ArrayList<String>(List.of("reptincel","dracaufeu")), new ArrayList<String>(List.of("3", "feu", "vol")));
         Pokemon pokemon3 = new Pokemon("carapuce", new ArrayList<String>(List.of("eau")) , 3, new ArrayList<String>(List.of("carabaffe","tortank")));
@@ -126,8 +126,8 @@ public class Pokedex {
 
     public static Competence getCompetence(String nom){
         for(int i=0; i < listeCompetence.size(); i++){
-            if(listeCompetence.indexOf(i).getNom().equals(nom)){
-                return listeCompetence.indexOf(i);
+            if(listeCompetence.get(i).getNom().equals(nom)){
+                return listeCompetence.get(i);
             }
         }
         return null;
