@@ -22,7 +22,7 @@ public class SystemCombat {
         {1.0,0.5,0.5,1.0,1.0,2.0,1.0,1.0,1.0,1.0,1.0,1.0,2.0,1.0,1.0,1.0,0.5}
     };
    
-    private ArrayList <Integer> type_def=new ArrayList(2);
+
 
 
     public int getNum(String type){
@@ -89,6 +89,7 @@ public class SystemCombat {
         att.getCompetences();
         int input = myObj.nextInt(); 
         myObj.close();
+        ArrayList <Integer> type_def=new ArrayList(2);
         int choix=getNum(att.getCompetences().get(input).getType());
         for(int i=0;i<def.getType().size();i++){
             type_def.add(getNum(def.getType().get(i)));
