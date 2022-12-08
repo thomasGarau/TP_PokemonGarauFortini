@@ -9,6 +9,8 @@ public class Pokemon {
     private final int EVO_MAX;
     private ArrayList <String> next_evo=new ArrayList<>(2);
     private ArrayList <String> changement=new ArrayList<>(2);
+    private ArrayList <Competence> Competences;
+    
 
     public Pokemon(String nom,ArrayList<String> type,int EVO_MAX,ArrayList<String> next_evo){
         Random r =new Random();
@@ -18,6 +20,9 @@ public class Pokemon {
         this.PV=r.nextInt(5);
         this.type=type;
         this.nom=nom;
+        ArrayList <Competence> competence=new ArrayList<>(4);
+        Competence griffe=new Competence("griffe", "normal");
+        competence.add(griffe);
     }
 
     public Pokemon(String nom,ArrayList<String> type,int EVO_MAX,ArrayList<String> next_evo,ArrayList<String> changement){
@@ -55,6 +60,10 @@ public class Pokemon {
 
     public ArrayList<String> getType() {
         return type;
+    }
+
+    public ArrayList<Competence> getCompetences() {
+        return Competences;
     }
 
     public void evoluer(){
