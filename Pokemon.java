@@ -12,6 +12,7 @@ public class Pokemon {
     private Dresseur dresseur; 
     private ArrayList <Competence> competence = new ArrayList<>(4);
     
+    
 
     //constructeur de pokemon moule
     public Pokemon(String nom,ArrayList<String> type,int EVO_MAX,ArrayList<String> next_evo){
@@ -123,13 +124,13 @@ public class Pokemon {
             Competence flameche = new Competence(Pokedex.getCompetence("flameche"));
             competence.add(flameche);
         }
-        else if(type=="eau"){
+        else if(type=="plante"){
             Competence tranch_herbe= new Competence(Pokedex.getCompetence("tranch'herbe"));
             competence.add(tranch_herbe);
         }
-        else if(type=="plante"){
-            Competence flameche = new Competence(Pokedex.getCompetence("flameche"));
-            competence.add(flameche);
+        else if(type=="eau"){
+            Competence bulles_do = new Competence(Pokedex.getCompetence("bulles'do"));
+            competence.add(bulles_do);
         }
         else if(type=="électrick"){
             Competence flameche = new Competence(Pokedex.getCompetence("flameche"));
