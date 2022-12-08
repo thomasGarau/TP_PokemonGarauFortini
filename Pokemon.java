@@ -2,27 +2,51 @@ import java.util.Random;
 import java.util.ArrayList;
 public class Pokemon {
     private String nom;
-    private int PC;
-    private int PV;
+    private int pc;
+    private int pv;
     private ArrayList <String> type=new ArrayList<>(2);
     private int stade_evo=1;
     private final int EVO_MAX;
     private ArrayList <String> next_evo=new ArrayList<>(2);
     private ArrayList <String> changement=new ArrayList<>(2);
+    private ArrayList<Competence> competence = new ArrayList<>();
+    private Dresseur dresseur; 
 
+    //constructeur de pokemon moule
     public Pokemon(String nom,ArrayList<String> type,int EVO_MAX,ArrayList<String> next_evo){
-        Random r =new Random();
         this.EVO_MAX=EVO_MAX;
         this.next_evo=next_evo;
-        this.PC=r.nextInt(5);
-        this.PV=r.nextInt(5);
         this.type=type;
         this.nom=nom;
     }
 
+    //constructeur de pokemon moule avec changement de type à l'évolution
     public Pokemon(String nom,ArrayList<String> type,int EVO_MAX,ArrayList<String> next_evo,ArrayList<String> changement){
         this(nom,type,EVO_MAX,next_evo);
         this.changement=changement;
+    }
+
+    //constructeur d'instance pokemon reel
+    public Pokemon(Pokemon pokemon, Dresseur dresseur){
+        Random r =new Random();
+        this.nom = pokemon.getNom();
+        this.type = pokemon.getType();
+        this.EVO_MAX = pokemon.getEVO_MAX();
+        this.next_evo = pokemon.getNext_evo();
+        this.competence = pokemon.getCompetence();
+        this.pc = 10 + r.nextInt(20);
+        this.pv = 50 + r.nextInt(50);
+        this.dresseur = dresseur;      
+    }
+
+    //constructeur d'instance pokemon reel avec changement de type à l'évolution
+    public Pokemon(Pokemon pokemon, Dresseur dresseur, ArrayList<String> changement){
+        this(pokemon, dresseur);
+        this.changement = changement;
+    }
+
+    public ArrayList<Competence> getCompetence() {
+        return competence;
     }
 
     public int getEVO_MAX() {
@@ -33,12 +57,12 @@ public class Pokemon {
         return nom;
     }
 
-    public int getPC() {
-        return PC;
+    public int getpc() {
+        return pc;
     }
 
-    public int getPV() {
-        return PV;
+    public int getpv() {
+        return pv;
     }
 
     public int getStade_evo() {
@@ -62,8 +86,8 @@ public class Pokemon {
         if(stade_evo<EVO_MAX){
             stade_evo+=1;
             nom=next_evo.get(stade_evo-2);
-            PC+=r.nextInt(5);
-            PV+=r.nextInt(5);
+            pc+= 4 + r.nextInt(3);
+            pv+= 12 + r.nextInt(12);
             if(!(changement.isEmpty())){
                 if(stade_evo==Integer.parseInt(changement.get(0))){
                     type.clear();
@@ -75,8 +99,8 @@ public class Pokemon {
             }
         }
         else{
-            PC+=r.nextInt(5);
-            PV+=r.nextInt(5);
+            pc+= 1 + r.nextInt(1);
+            pv+= 2 + r.nextInt(3);
         }
     }
     

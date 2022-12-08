@@ -1,10 +1,9 @@
+import java.util.*;
+
 public class Pokedex {
+    private ArrayList<Pokemon> pokedex;
     
     public Pokedex(){
-
-    }
-
-    public initialisePokedex(){
         Pokemon pokemon1 = new Pokemon("bulbizarre", new ArrayList<String>(List.of("plante","poison")), 3, new ArrayList<String>(List.of("herbizarre","florizarre")));
         Pokemon pokemon2 = new Pokemon("salameche", new ArrayList<String>(List.of("feu")), 3, new ArrayList<String>(List.of("reptincel","dracaufeu")), new ArrayList<String>(List.of("3", "feu", "vol")));
         Pokemon pokemon3 = new Pokemon("carapuce", new ArrayList<String>(List.of("eau")) , 3, new ArrayList<String>(List.of("carabaffe","tortank")));
@@ -15,5 +14,8 @@ public class Pokedex {
         Pokemon pokemon8 = new Pokemon("piafebec", new ArrayList<String>(List.of("normal", "vol")) , 3, new ArrayList<String>(List.of("rapasdepic")));
         Pokemon pokemon9 = new Pokemon("abo", new ArrayList<String>(List.of("poison")) , 3, new ArrayList<String>(List.of("arbok")));
         Pokemon pokemon10 = new Pokemon("pikachu", new ArrayList<String>(List.of("electrik")) , 3, new ArrayList<String>(List.of("raichu")));
+        this.pokedex = new ArrayList<>(List.of(pokemon1, pokemon2, pokemon3, pokemon4, pokemon5, pokemon6, pokemon7, pokemon8, pokemon9, pokemon10));
     }
+
+
 }
