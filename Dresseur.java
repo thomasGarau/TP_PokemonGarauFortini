@@ -24,6 +24,8 @@ public class Dresseur {
         this.defaite ++;
     }
 
+    
+
     public void getWinrate(){
         System.out.print((this.victoire / (this.defaite + this.victoire)) * 100);
     }

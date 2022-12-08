@@ -104,7 +104,7 @@ public class Pokedex {
         Competence flameche=new Competence("flameche", "feu");
         Competence bulles_do=new Competence("bulles'do", "eau");
         Competence tranch_herbe=new Competence("tranch'herbe", "plante");
-        Competence eclair=new Competence("éclair", "electrik");
+        Competence eclair=new Competence("éclair", "électrik");
         Competence poing_glace=new Competence("poing glace", "glace");
         Competence balayette=new Competence("balayette", "combat");
         Competence dard_venin=new Competence("dard venin", "poison");
