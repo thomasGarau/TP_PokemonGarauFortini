@@ -29,6 +29,7 @@ public class Client
         String line = "";
                 
         //boucle input principal ->inserer jeu ici
+        // commande-> lancer un combat ,afficher liste conecté
         while (!line.equals("Over"))
         {
             try

@@ -20,7 +20,9 @@ public class Server
 
 			socket = server.accept();
 			System.out.println("Client accepted");
-
+			//print liste client
+			//si combat choisit qui commence avec random
+			//le dressseur adv peut accepter ou refuser
 			
 			in = new DataInputStream(
 				new BufferedInputStream(socket.getInputStream()));
