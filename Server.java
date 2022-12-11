@@ -7,7 +7,7 @@ import java.io.InputStream;
 
 public class Server extends Thread{
     private static final int PORT = 8080;
-
+    private static int nb_client=-1;
     private static List<Socket> connectedClients = new ArrayList<>();
 
     public static List<Socket> getConnectedClients() {
@@ -15,25 +15,34 @@ public class Server extends Thread{
     }
 
     public void run(){
-        try {
-            ServerSocket serverSocket = new ServerSocket(PORT);
-            while (true) {
-                Socket clientSocket = serverSocket.accept();
-                connectedClients.add(clientSocket);
-                System.out.println("New client connected: " + clientSocket.getRemoteSocketAddress());
+        while(true){
+            try{
+                Socket clientSocket =getConnectedClients().get(nb_client);
                 InputStream inFromClient = clientSocket.getInputStream();
                 DataInputStream in = new DataInputStream(inFromClient);
                 String message = in.readUTF();
                 System.out.println("Message from client: " + message);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+            catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
     public static void main(String[] args) {
-        Server routine = new Server();
-        routine.start();
+        while(true){
+            try {
+                ServerSocket serverSocket = new ServerSocket(PORT);
+                Socket clientSocket = serverSocket.accept();
+                nb_client+=1;
+                connectedClients.add(clientSocket);
+                System.out.println("New client connected: " + clientSocket.getRemoteSocketAddress());
+                Server routine = new Server();
+                routine.start();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
 
