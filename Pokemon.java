@@ -39,23 +39,11 @@ public class Pokemon {
 
     //constructeur d'instance pokemon reel
     public Pokemon(Pokemon pokemon, Dresseur dresseur){
+        this(pokemon.getNom(), pokemon.getType(), pokemon.getEVO_MAX(), pokemon.getNext_evo(), pokemon.getChangement());
         Random r =new Random();
-        this.nom = pokemon.getNom();
-        this.type = pokemon.getType();
-        this.EVO_MAX = pokemon.getEVO_MAX();
-        this.next_evo = pokemon.getNext_evo();
-        this.competence = pokemon.getCompetence();
         this.pc = 10 + r.nextInt(20);
         this.pv = 50 + r.nextInt(50);
         this.dresseur = dresseur;
-        Competence griffe=new Competence("griffe", "normal");
-        this.competence.add(griffe);  
-    }
-
-    //constructeur d'instance pokemon reel avec changement de type à l'évolution
-    public Pokemon(Pokemon pokemon, Dresseur dresseur, ArrayList<String> changement){
-        this(pokemon, dresseur);
-        this.changement = changement;
     }
 
     public ArrayList<Competence> getCompetence() {
@@ -120,7 +108,7 @@ public class Pokemon {
             pv+= 2 + r.nextInt(3);
         }
     }
-
+    
     public void assignComp(String type){
 
         if(type=="normal"){
@@ -191,6 +179,35 @@ public class Pokemon {
             Competence gyroballe = new Competence(Pokedex.getCompetence("gyroballe"));
             competence.add(gyroballe);
         }    
+    }
+
+    public String toString(){
+        String a = "";
+        String b = "";
+        String c = "";
+        for(int i=0; i< this.type.size(); i++){
+            a += type.get(i) + " ";
+        }
+        for(int i=0; i< this.competence.size(); i++){
+            b+="competence " +  this.competence.get(i).getNom() + " de type : " + this.competence.get(i).getType() + "; ";
+
+        }
+        for(int i=0; i< this.next_evo.size(); i++){
+            c += this.next_evo.get(i) + "; ";
+
+        }
+        
+
+        return (
+            "nom " + this.nom + "\n" +
+            "quantiter pc " + this.pc + "\n" +
+            "quantiter pv " + this.pv + "\n" +
+            "type(s) " + a + "\n" +
+            "stade d'évolution " +this.stade_evo + "\n" +
+            "prochaine evolution " + c + "\n" +
+            "dresseur " + this.dresseur + "\n" +  
+            "compétence possédé : " + b       
+            );
     }
     
 }

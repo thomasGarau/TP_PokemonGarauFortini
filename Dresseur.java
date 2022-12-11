@@ -24,9 +24,28 @@ public class Dresseur {
         this.defaite ++;
     }
 
-    
+    public int getWinrate(){
+        if(this.victoire + this.defaite > 0){
+            return ((this.victoire / (this.defaite + this.victoire)) * 100);
+        }
+        return 0;
+    }
 
-    public void getWinrate(){
-        System.out.print((this.victoire / (this.defaite + this.victoire)) * 100);
+    public String toString(){
+        int winrate = this.getWinrate();
+        String a = "";
+        for(int i=0; i< listePokemeon.size(); i++){
+            a+= listePokemeon.get(i) + ", ";
+        }
+        return (
+            "nom" + this.pseudo + "\n" +
+            "posséde " + this.nbPokemon + " Pokemon" + "\n" +
+            a + "\n" +
+            "a gagné " + this.victoire + " combat dans l'arène " + "\n" +
+            "en a perdu" + this.defaite + "\n" +
+            "winrate de " + winrate + "%"
+        );
+
+
     }
 }

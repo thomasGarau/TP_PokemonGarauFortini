@@ -2,10 +2,35 @@ import java.util.*;
 
 public class Pokedex {
     private static ArrayList<Pokemon> pokedex;
-    
     private static ArrayList<Competence> listeCompetence;
     
     public Pokedex(){
+
+        //initialise les moule d'instance de compétences (une par type)
+        Competence charge=new Competence("charge", "normal");
+        Competence flameche=new Competence("flameche", "feu");
+        Competence bulles_do=new Competence("bulles'do", "eau");
+        Competence tranch_herbe=new Competence("tranch'herbe", "plante");
+        Competence eclair=new Competence("éclair", "électrik");
+        Competence poing_glace=new Competence("poing glace", "glace");
+        Competence balayette=new Competence("balayette", "combat");
+        Competence dard_venin=new Competence("dard venin", "poison");
+        Competence tunnel=new Competence("tunnel", "sol");
+        Competence picpic=new Competence("picpic", "vol");
+        Competence psyko=new Competence("psyko", "psy");
+        Competence dard_nue=new Competence("dard nuée", "insecte");
+        Competence eboulement=new Competence("éboulement", "roche");
+        Competence griffe_ombre=new Competence("griffe ombre", "spectre");
+        Competence draco_griffe=new Competence("draco-griffe", "dragon");
+        Competence machouille=new Competence("machouille", "ténèbres");
+        Competence gyroballe=new Competence("gyroballe", "acier");
+
+        //ajoute toute les compétences à la liste de compétence
+        listeCompetence = new ArrayList<>(Arrays.asList(
+            charge, flameche, bulles_do,tranch_herbe, eclair, poing_glace, balayette, dard_venin,tunnel,
+            picpic, psyko, dard_nue, eboulement, griffe_ombre, draco_griffe, machouille, gyroballe
+        ));
+ 
         //initialise tout les "moules" d'instance de pokemon
         //comprend la liste des 151 premier pokemon à l'exception d'aquali pyroli voltali
         Pokemon pokemon1 = new Pokemon("bulbizarre", new ArrayList<String>(Arrays.asList("plante","poison")), 3, new ArrayList<String>(Arrays.asList("herbizarre","florizarre")));
@@ -87,7 +112,7 @@ public class Pokedex {
 
 
         //ajoute l'intégralité des pokemon à la liste pokedex
-        this.pokedex = new ArrayList<>(Arrays.asList(
+        pokedex = new ArrayList<>(Arrays.asList(
             pokemon1, pokemon2, pokemon3, pokemon4, pokemon5, pokemon6, pokemon7, pokemon8, pokemon9, 
             pokemon10, pokemon11, pokemon12, pokemon13, pokemon14, pokemon15, pokemon16, pokemon17, pokemon18, pokemon19,
             pokemon20, pokemon21, pokemon22, pokemon23, pokemon24, pokemon25, pokemon26, pokemon27, pokemon28, pokemon29,
@@ -98,41 +123,23 @@ public class Pokedex {
             pokemon70, pokemon71, pokemon72, pokemon73, pokemon74, pokemon75, pokemon76
         ));
 
-
-        //initialise les moule d'instance de compétences (une par type)
-        Competence charge=new Competence("charge", "normal");
-        Competence flameche=new Competence("flameche", "feu");
-        Competence bulles_do=new Competence("bulles'do", "eau");
-        Competence tranch_herbe=new Competence("tranch'herbe", "plante");
-        Competence eclair=new Competence("éclair", "électrik");
-        Competence poing_glace=new Competence("poing glace", "glace");
-        Competence balayette=new Competence("balayette", "combat");
-        Competence dard_venin=new Competence("dard venin", "poison");
-        Competence tunnel=new Competence("tunnel", "sol");
-        Competence picpic=new Competence("picpic", "vol");
-        Competence psyko=new Competence("psyko", "psy");
-        Competence dard_nue=new Competence("dard nuée", "insecte");
-        Competence eboulement=new Competence("éboulement", "roche");
-        Competence griffe_ombre=new Competence("griffe ombre", "spectre");
-        Competence draco_griffe=new Competence("draco-griffe", "dragon");
-        Competence machouille=new Competence("machouille", "ténèbres");
-        Competence gyroballe=new Competence("gyroballe", "acier");
-
-        //ajoute toute les compétences à la liste de compétence
-        this.listeCompetence = new ArrayList<>(Arrays.asList(
-            charge, flameche, bulles_do,tranch_herbe, eclair, poing_glace, balayette, dard_venin,tunnel,
-            picpic, psyko, dard_nue, eboulement, griffe_ombre, draco_griffe, machouille, gyroballe
-        ));
     }
-
     public static Competence getCompetence(String nom){
         for(int i=0; i < listeCompetence.size(); i++){
             if(listeCompetence.get(i).getNom().equals(nom)){
                 return listeCompetence.get(i);
             }
         }
-        return null;
+         return null;
     }
 
+    public static ArrayList<Pokemon> getPokedex(){
+        return pokedex;
+    }
+    public static ArrayList<Competence> getListCompetence(){
+        return listeCompetence;
+    }
+
+    
 
 }

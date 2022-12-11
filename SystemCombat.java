@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 public class SystemCombat {
-    private final double[][] tableType=
+    private final static double[][] tableType=
     {
         {1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.5,0.0,1.0,1.0,0.5},
         {1.0,0.5,0.5,2.0,1.0,2.0,1.0,1.0,1.0,1.0,1.0,2.0,0.5,1.0,0.5,1.0,2.0},
@@ -22,10 +22,10 @@ public class SystemCombat {
         {1.0,0.5,0.5,1.0,1.0,2.0,1.0,1.0,1.0,1.0,1.0,1.0,2.0,1.0,1.0,1.0,0.5}
     };
    
-    private ArrayList <Integer> type_def=new ArrayList(2);
+    private static ArrayList <Integer> type_def=new ArrayList(2);
 
 
-    public int getNum(String type){
+    public static int getNum(String type){
         if(type=="normal"){
             return 0;
         }
@@ -79,11 +79,11 @@ public class SystemCombat {
         }    
     }
 
-    public double[][] getTableType() {
+    public static double[][] getTableType() {
         return tableType;
     }
 
-    public double attack(Pokemon att,Pokemon def){
+    public static double attack(Pokemon att,Pokemon def){
         Scanner myObj = new Scanner(System.in);
         System.out.println("choisir un competence:");
         att.getCompetences();
@@ -102,7 +102,7 @@ public class SystemCombat {
         
     }
 
-    public void combat(Pokemon un ,Pokemon deux){
+    public static void combat(Pokemon un ,Pokemon deux){
         float pv1=un.getpv();
         float pv2=deux.getpv();
         while(pv1>0.0 || pv2>0.0){

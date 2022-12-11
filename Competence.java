@@ -20,4 +20,11 @@ public class Competence {
         return type;
     }
 
+    public String toString(){
+        return (
+            "nom : " + this.nom + " " +
+            "type :" + this.type
+        );
+    }
+
 }
