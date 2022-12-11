@@ -14,6 +14,27 @@ public class Server extends Thread{
         return connectedClients;
     }
 
+    public void printClient(){
+        for(int i=0;i<getConnectedClients().size();i++){
+            System.out.println(getConnectedClients().get(i));
+        }
+    }
+
+    public void inputHandler(String input){
+        if(input.equals("deco")){
+            //deconexion
+        }
+        else if(input.equals("joueur")){
+            printClient();
+        }
+        else if(input.equals("combat")){
+            //checrhe adv
+        }
+        else{
+            System.out.println("Message from client: " + input);
+        }
+    }
+
     public void run(){
         Socket clientSocket =getConnectedClients().get(nb_client);
         while(true){
@@ -21,10 +42,7 @@ public class Server extends Thread{
                 InputStream inFromClient = clientSocket.getInputStream();
                 DataInputStream in = new DataInputStream(inFromClient);
                 String message = in.readUTF();
-                System.out.println("Message from client: " + message);
-                for(int i=0;i<getConnectedClients().size();i++){
-                    System.out.println(getConnectedClients().get(i));
-                }
+                inputHandler(message);
             }
             catch (Exception e) {
                 e.printStackTrace();
