@@ -15,13 +15,16 @@ public class Server extends Thread{
     }
 
     public void run(){
+        Socket clientSocket =getConnectedClients().get(nb_client);
         while(true){
             try{
-                Socket clientSocket =getConnectedClients().get(nb_client);
                 InputStream inFromClient = clientSocket.getInputStream();
                 DataInputStream in = new DataInputStream(inFromClient);
                 String message = in.readUTF();
                 System.out.println("Message from client: " + message);
+                for(int i=0;i<getConnectedClients().size();i++){
+                    System.out.println(getConnectedClients().get(i));
+                }
             }
             catch (Exception e) {
                 e.printStackTrace();
@@ -34,7 +37,7 @@ public class Server extends Thread{
             try {
                 ServerSocket serverSocket = new ServerSocket(PORT);
                 Socket clientSocket = serverSocket.accept();
-                nb_client+=1;
+                nb_client++;
                 connectedClients.add(clientSocket);
                 System.out.println("New client connected: " + clientSocket.getRemoteSocketAddress());
                 Server routine = new Server();
