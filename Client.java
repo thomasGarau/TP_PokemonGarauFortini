@@ -1,62 +1,77 @@
-import java.net.*;
 import java.io.*;
+import java.net.*;
+import java.util.Date;
 
-public class Client
-{
-    private Socket socket= null;
-    private DataInputStream  input= null;
-    private DataOutputStream out= null;
+public class Client {
 
+   public static void main(String[] args) {
 
-    public Client(String address, int port)
-    {
+ 
+       final String serverHost = "localhost";
 
-        try
-        {
-            socket = new Socket(address, port);
-            System.out.println("Connected");
-            input  = new DataInputStream(System.in);
-            out = new DataOutputStream(socket.getOutputStream());
-        }
-        catch(UnknownHostException u)
-        {
-            System.out.println(u);
-        }
-        catch(IOException i)
-        {
-            System.out.println(i);
-        }
-        String line = "";
-                
-        //boucle input principal ->inserer jeu ici
-        // commande-> lancer un combat ,afficher liste conecté
-        while (!line.equals("Over"))
-        {
-            try
-            {
-                line = input.readUTF();
-                out.writeUTF(line);
-            }
-            catch(IOException i)
-            {
-                System.out.println(i);
-            }
-        }
+       Socket socketOfClient = null;
+       BufferedWriter os = null;
+       BufferedReader is = null;
 
-        try
-        {
-            input.close();
-            out.close();
-            socket.close();
-        }
-        catch(IOException i)
-        {
-            System.out.println(i);
-        }
-}
+       try {
+     
+           
+           // Send a request to connect to the server is listening
+           // on machine 'localhost' port 7777.            
+           socketOfClient = new Socket(serverHost, 7777);
+     
+           // Create output stream at the client (to send data to the server)
+           os = new BufferedWriter(new OutputStreamWriter(socketOfClient.getOutputStream()));
 
-public static void main(String args[])
-{
-Client client = new Client("127.0.0.1", 5000);
-}
+     
+           // Input stream at Client (Receive data from the server).
+           is = new BufferedReader(new InputStreamReader(socketOfClient.getInputStream()));
+
+       } catch (UnknownHostException e) {
+           System.err.println("Don't know about host " + serverHost);
+           return;
+       } catch (IOException e) {
+           System.err.println("Couldn't get I/O for the connection to " + serverHost);
+           return;
+       }
+
+       try {
+   
+           // Write data to the output stream of the Client Socket.
+           os.write("HELO! now is " + new Date());
+       
+           // End of line
+           os.newLine();
+       
+           // Flush data.
+           os.flush();  
+           os.write("I am Tom Cat");
+           os.newLine();
+           os.flush();
+           os.write("QUIT");  
+           os.newLine();
+           os.flush();
+
+     
+           
+           // Read data sent from the server.
+           // By reading the input stream of the Client Socket.
+           String responseLine;
+           while ((responseLine = is.readLine()) != null) {
+               System.out.println("Server: " + responseLine);
+               if (responseLine.indexOf("OK") != -1) {
+                   break;
+               }
+           }
+
+           os.close();
+           is.close();
+           socketOfClient.close();
+       } catch (UnknownHostException e) {
+           System.err.println("Trying to connect to unknown host: " + e);
+       } catch (IOException e) {
+           System.err.println("IOException:  " + e);
+       }
+   }
+
 }
