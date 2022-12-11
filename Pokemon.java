@@ -11,7 +11,7 @@ public class Pokemon {
     private ArrayList <String> changement=new ArrayList<>(2);
     private Dresseur dresseur; 
     private ArrayList <Competence> competence = new ArrayList<>(4);
-    
+    private String surnom;    
     
 
     //constructeur de pokemon moule
@@ -44,6 +44,14 @@ public class Pokemon {
         this.pc = 10 + r.nextInt(20);
         this.pv = 50 + r.nextInt(50);
         this.dresseur = dresseur;
+    }
+
+    public String getSurnom(){
+        return this.surnom;
+    }
+
+    public void setSurnom(String surnom){
+        this.surnom = surnom;
     }
 
     public ArrayList<Competence> getCompetence() {

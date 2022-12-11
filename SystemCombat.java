@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 public class SystemCombat {
     private final static double[][] tableType=
     {
@@ -23,7 +22,7 @@ public class SystemCombat {
     };
    
     private static ArrayList <Integer> type_def=new ArrayList(2);
-    
+
     public static int getNum(String type){
         if(type=="normal"){
             return 0;
@@ -82,6 +81,7 @@ public class SystemCombat {
         return tableType;
     }
 
+    //attack et utilisé par les dresseur ils choisissent leur attack est le calcule de dégat et effectué 
     public static double attack(Pokemon att,Pokemon def){
         Scanner myObj = new Scanner(System.in);
         System.out.println("choisir un competence:");
@@ -101,6 +101,24 @@ public class SystemCombat {
         }
         
     }
+
+    // attackAuto est utilisé par les pokemon sauvage il effectue des attack au hasard dans leur liste de compétence
+    public static double attackAuto(Pokemon att,Pokemon def){
+        Random r =new Random();
+        int input = r.nextInt(att.getCompetence().size());
+        ArrayList <Integer> type_def=new ArrayList(2);
+        int choix=getNum(att.getCompetences().get(input).getType());
+        for(int i=0;i<def.getType().size();i++){
+            type_def.add(getNum(def.getType().get(i)));
+        }
+        if(type_def.size()==1){
+           return att.getpc()*(tableType[choix][type_def.get(0)]); 
+        }
+        else{
+            return att.getpc()*(tableType[choix][type_def.get(0)]*tableType[choix][type_def.get(1)]);
+        }
+    }
+
 
     public static void combat(Pokemon un ,Pokemon deux){
         float pv1=un.getpv();
