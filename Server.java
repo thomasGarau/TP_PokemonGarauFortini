@@ -5,7 +5,7 @@ import java.util.List;
 import java.io.DataInputStream;
 import java.io.InputStream;
 
-public class Server {
+public class Server extends Thread{
     private static final int PORT = 8080;
 
     private static List<Socket> connectedClients = new ArrayList<>();
@@ -14,8 +14,7 @@ public class Server {
         return connectedClients;
     }
 
-
-    public static void main(String[] args) {
+    public void run(){
         try {
             ServerSocket serverSocket = new ServerSocket(PORT);
             while (true) {
@@ -30,6 +29,11 @@ public class Server {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) {
+        Server routine = new Server();
+        routine.start();
     }
 }
 
