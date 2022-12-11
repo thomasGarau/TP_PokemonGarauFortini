@@ -46,7 +46,7 @@ public class Capture {
                 System.out.print("pv restant de votre pokemon : " + this.pokemonDresseurHp);
             }
             if(choix == 2){
-
+                
             }
         }
     }

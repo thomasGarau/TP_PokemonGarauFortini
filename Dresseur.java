@@ -3,9 +3,14 @@ import java.util.*;
 public class Dresseur {
     private String pseudo;
     private int nbPokemon = 0;
+    //nombre de victoire dans l'arène
     private int victoire = 0; 
+    //nombre de défaite dans l'arène
     private int defaite = 0;
     private ArrayList<Pokemon> listePokemeon = new ArrayList<>();
+    //le pokemon principale du dresseur celui avec lequelle il combat par défaut
+    //le pokemon principale est l'index mainPokemon dans la liste listePokemon
+    private int mainPokemon;
 
     public Dresseur(String pseudo){
         this.pseudo = pseudo;
@@ -31,6 +36,12 @@ public class Dresseur {
         return 0;
     }
 
+    public void setMainPokemon(int value){
+        if(this.listePokemeon.size() >= value){
+            this.mainPokemon = value; 
+        }
+    }   
+
     public String toString(){
         int winrate = this.getWinrate();
         String a = "";
@@ -45,7 +56,5 @@ public class Dresseur {
             "en a perdu" + this.defaite + "\n" +
             "winrate de " + winrate + "%"
         );
-
-
     }
 }

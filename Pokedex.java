@@ -42,7 +42,7 @@ public class Pokedex {
         Pokemon pokemon7 = new Pokemon("rattata", new ArrayList<String>(Arrays.asList("normale")) , 3, new ArrayList<String>(Arrays.asList("rattatac")));
         Pokemon pokemon8 = new Pokemon("piafebec", new ArrayList<String>(Arrays.asList("normal", "vol")) , 3, new ArrayList<String>(Arrays.asList("rapasdepic")));
         Pokemon pokemon9 = new Pokemon("abo", new ArrayList<String>(Arrays.asList("poison")) , 3, new ArrayList<String>(Arrays.asList("arbok")));
-        Pokemon pokemon10 = new Pokemon("pikachu", new ArrayList<String>(Arrays.asList("electrik")) , 3, new ArrayList<String>(Arrays.asList("raichu")));
+        Pokemon pokemon10 = new Pokemon("pikachu", new ArrayList<String>(Arrays.asList("électrik")) , 3, new ArrayList<String>(Arrays.asList("raichu")));
         Pokemon pokemon11 = new Pokemon("sabelette", new ArrayList<String>(Arrays.asList("sol")) , 3, new ArrayList<String>(Arrays.asList("sablaireau")));
         Pokemon pokemon12 = new Pokemon("nidoran", new ArrayList<String>(Arrays.asList("poison")) , 3, new ArrayList<String>(Arrays.asList("nidorina", "nidoqueen")), new ArrayList<String>(Arrays.asList("3","poison", "sol")));
         Pokemon pokemon13 = new Pokemon("melofee", new ArrayList<String>(Arrays.asList("normal")) , 3, new ArrayList<String>(Arrays.asList("melodelfe")));
@@ -65,7 +65,7 @@ public class Pokedex {
         Pokemon pokemon30 = new Pokemon("racaillou", new ArrayList<String>(Arrays.asList("roche", "sol")) , 3, new ArrayList<String>(Arrays.asList("gravalanch", "grolem")));
         Pokemon pokemon31 = new Pokemon("ponyta", new ArrayList<String>(Arrays.asList("feu")) , 3, new ArrayList<String>(Arrays.asList("galopa")));
         Pokemon pokemon32 = new Pokemon("ramoloss", new ArrayList<String>(Arrays.asList("eau", "psy")) , 3, new ArrayList<String>(Arrays.asList("flagadoss")));
-        Pokemon pokemon33 = new Pokemon("magneti", new ArrayList<String>(Arrays.asList("electrik", "acier")) , 3, new ArrayList<String>(Arrays.asList("magneton")));
+        Pokemon pokemon33 = new Pokemon("magneti", new ArrayList<String>(Arrays.asList("électrik", "acier")) , 3, new ArrayList<String>(Arrays.asList("magneton")));
         Pokemon pokemon34 = new Pokemon("canarticho", new ArrayList<String>(Arrays.asList("normal", "vol")) , 3, new ArrayList<String>());
         Pokemon pokemon35 = new Pokemon("doduo", new ArrayList<String>(Arrays.asList("normal", "vol")) , 3, new ArrayList<String>(Arrays.asList("dodrio")));
         Pokemon pokemon36 = new Pokemon("otaria", new ArrayList<String>(Arrays.asList("eau")) , 3, new ArrayList<String>(Arrays.asList("lamantine")), new ArrayList<String>(Arrays.asList("2","glace", "eau")));
@@ -75,7 +75,7 @@ public class Pokedex {
         Pokemon pokemon40 = new Pokemon("onix", new ArrayList<String>(Arrays.asList("roche", "sol")) , 3, new ArrayList<String>());
         Pokemon pokemon41 = new Pokemon("soporifik", new ArrayList<String>(Arrays.asList("psy")) , 3, new ArrayList<String>(Arrays.asList("hypnomade")));
         Pokemon pokemon42 = new Pokemon("krabby", new ArrayList<String>(Arrays.asList("eau")) , 3, new ArrayList<String>(Arrays.asList("krabboss")));
-        Pokemon pokemon43 = new Pokemon("voltorbe", new ArrayList<String>(Arrays.asList("electrik")) , 3, new ArrayList<String>(Arrays.asList("electrode")));
+        Pokemon pokemon43 = new Pokemon("voltorbe", new ArrayList<String>(Arrays.asList("électrik")) , 3, new ArrayList<String>(Arrays.asList("electrode")));
         Pokemon pokemon44 = new Pokemon("noeunoeuf", new ArrayList<String>(Arrays.asList("plante", "psy")) , 3, new ArrayList<String>(Arrays.asList("noadkoko")));
         Pokemon pokemon45 = new Pokemon("osselait", new ArrayList<String>(Arrays.asList("sol")) , 3, new ArrayList<String>(Arrays.asList("ossatueur")));
         Pokemon pokemon46 = new Pokemon("kicklee", new ArrayList<String>(Arrays.asList("combat")) , 3, new ArrayList<String>(Arrays.asList("tygnon")));
@@ -90,7 +90,7 @@ public class Pokedex {
         Pokemon pokemon55 = new Pokemon("stari", new ArrayList<String>(Arrays.asList("eau")) , 3, new ArrayList<String>(Arrays.asList("staross")), new ArrayList<String>(Arrays.asList("2","eau", "psy")));
         Pokemon pokemon56 = new Pokemon("M.mime", new ArrayList<String>(Arrays.asList("normal", "psy")) , 3, new ArrayList<String>());
         Pokemon pokemon57 = new Pokemon("insecateur", new ArrayList<String>(Arrays.asList("insecte", "vol")) , 3, new ArrayList<String>());
-        Pokemon pokemon58 = new Pokemon("Elektek", new ArrayList<String>(Arrays.asList("elecktrik")) , 3, new ArrayList<String>());
+        Pokemon pokemon58 = new Pokemon("Elektek", new ArrayList<String>(Arrays.asList("électrik")) , 3, new ArrayList<String>());
         Pokemon pokemon59 = new Pokemon("magmar", new ArrayList<String>(Arrays.asList("feu")) , 3, new ArrayList<String>());
         Pokemon pokemon60 = new Pokemon("scarabrute", new ArrayList<String>(Arrays.asList("insecte")) , 3, new ArrayList<String>());
         Pokemon pokemon61 = new Pokemon("tauros", new ArrayList<String>(Arrays.asList("normal")) , 3, new ArrayList<String>());
@@ -104,7 +104,7 @@ public class Pokedex {
         Pokemon pokemon69 = new Pokemon("petra", new ArrayList<String>(Arrays.asList("roche", "vol")) , 3, new ArrayList<String>());
         Pokemon pokemon70 = new Pokemon("ronflex", new ArrayList<String>(Arrays.asList("normal")) , 3, new ArrayList<String>());
         Pokemon pokemon71 = new Pokemon("artikodin", new ArrayList<String>(Arrays.asList("glace", "vol")) , 3, new ArrayList<String>());
-        Pokemon pokemon72 = new Pokemon("electhor", new ArrayList<String>(Arrays.asList("electrik", "vol")) , 3, new ArrayList<String>());
+        Pokemon pokemon72 = new Pokemon("electhor", new ArrayList<String>(Arrays.asList("électrik", "vol")) , 3, new ArrayList<String>());
         Pokemon pokemon73 = new Pokemon("sulfura", new ArrayList<String>(Arrays.asList("feu", "vol")) , 3, new ArrayList<String>());
         Pokemon pokemon74 = new Pokemon("minidraco", new ArrayList<String>(Arrays.asList("dragon")) , 3, new ArrayList<String>(Arrays.asList("draco", "dracolosse")));
         Pokemon pokemon75 = new Pokemon("mewtwo", new ArrayList<String>(Arrays.asList("psy")) , 3, new ArrayList<String>());

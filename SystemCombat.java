@@ -23,8 +23,7 @@ public class SystemCombat {
     };
    
     private static ArrayList <Integer> type_def=new ArrayList(2);
-
-
+    
     public static int getNum(String type){
         if(type=="normal"){
             return 0;
@@ -89,6 +88,7 @@ public class SystemCombat {
         att.getCompetences();
         int input = myObj.nextInt(); 
         myObj.close();
+        ArrayList <Integer> type_def=new ArrayList(2);
         int choix=getNum(att.getCompetences().get(input).getType());
         for(int i=0;i<def.getType().size();i++){
             type_def.add(getNum(def.getType().get(i)));
