@@ -83,13 +83,12 @@ public class SystemCombat {
 
     //attack et utilisé par les dresseur ils choisissent leur attack est le calcule de dégat et effectué 
     public static double attack(Pokemon att,Pokemon def){
-        Scanner myObj = new Scanner(System.in);
+        Scanner input3 = new Scanner(System.in);
         System.out.println("choisir un competence:");
-        att.getCompetences();
-        int input = myObj.nextInt(); 
-        myObj.close();
+        System.out.print(att.getCompetences());
+        int input = input3.nextInt();
         ArrayList <Integer> type_def=new ArrayList(2);
-        int choix=getNum(att.getCompetences().get(input).getType());
+        int choix=getNum(att.getCompetences().get(input -1).getType());
         for(int i=0;i<def.getType().size();i++){
             type_def.add(getNum(def.getType().get(i)));
         }

@@ -20,7 +20,9 @@ public class Dresseur {
         }else{
             this.sexe = "femme";
         }
-        listePokemeon.add(starter);
+        this.listePokemeon.add(starter);
+        this.nbPokemon++;
+        setMainPokemon(0);
     }
 
     public void capturePokemon(Pokemon pokemon){
@@ -31,6 +33,7 @@ public class Dresseur {
         pokemon.setSurnom(surnom);
         this.listePokemeon.add(pokemon);
         this.nbPokemon ++;
+        pokemon.setDresseur(this);
     }
 
     public void winCombat(){
@@ -39,6 +42,10 @@ public class Dresseur {
 
     public void looseCombat(){
         this.defaite ++;
+    }
+
+    public String getPseudo(){
+        return this.pseudo;
     }
 
     public int getWinrate(){
@@ -74,6 +81,7 @@ public class Dresseur {
     public String toString(){
         int winrate = this.getWinrate();
         String a = "";
+        String b = this.listePokemeon.get(this.mainPokemon).getNom();
         for(int i=0; i< listePokemeon.size(); i++){
             a+= listePokemeon.get(i) + ", ";
         }
@@ -83,7 +91,8 @@ public class Dresseur {
             a + "\n" +
             "a gagné " + this.victoire + " combat dans l'arène " + "\n" +
             "en a perdu" + this.defaite + "\n" +
-            "winrate de " + winrate + "%"
+            "winrate de " + winrate + "%" + "\n" +
+            "a pour pokemon principale " + b
         );
     }
 }

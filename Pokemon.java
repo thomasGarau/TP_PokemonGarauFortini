@@ -38,11 +38,14 @@ public class Pokemon {
     }
 
     //constructeur d'instance pokemon reel
-    public Pokemon(Pokemon pokemon, Dresseur dresseur){
+    public Pokemon(Pokemon pokemon){
         this(pokemon.getNom(), pokemon.getType(), pokemon.getEVO_MAX(), pokemon.getNext_evo(), pokemon.getChangement());
         Random r =new Random();
         this.pc = 10 + r.nextInt(20);
         this.pv = 50 + r.nextInt(50);
+    }
+
+    public void setDresseur(Dresseur dresseur){
         this.dresseur = dresseur;
     }
 
@@ -193,6 +196,7 @@ public class Pokemon {
         String a = "";
         String b = "";
         String c = "";
+        String d = this.dresseur.getPseudo();
         for(int i=0; i< this.type.size(); i++){
             a += type.get(i) + " ";
         }
@@ -204,8 +208,7 @@ public class Pokemon {
             c += this.next_evo.get(i) + "; ";
 
         }
-        
-
+    
         return (
             "nom " + this.nom + "\n" +
             "quantiter pc " + this.pc + "\n" +
@@ -213,7 +216,7 @@ public class Pokemon {
             "type(s) " + a + "\n" +
             "stade d'évolution " +this.stade_evo + "\n" +
             "prochaine evolution " + c + "\n" +
-            "dresseur " + this.dresseur + "\n" +  
+            "dresseur " + d + "\n" +  
             "compétence possédé : " + b       
             );
     }
