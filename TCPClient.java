@@ -15,7 +15,7 @@ public class TCPClient {
       outStream.writeUTF(clientMessage);
       outStream.flush();
       serverMessage=inStream.readUTF();
-      System.out.println(serverMessage);
+      System.out.println(serverMessage + " server message ");
     }
     outStream.close();
     outStream.close();
