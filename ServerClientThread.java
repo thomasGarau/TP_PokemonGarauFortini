@@ -40,6 +40,7 @@ class ServerClientThread extends Thread {
           }
           else if(clientMessage.contains("name")){
             MultithreadedSocketServer.rename(serverClient,clientMessage.split(" ")[1]);
+            outStream.writeUTF("nom modifié");
           }
           else{
             System.out.println("From Client-" +clientMessage);
