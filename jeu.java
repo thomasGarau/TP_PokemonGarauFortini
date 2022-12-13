@@ -21,10 +21,38 @@ public class jeu {
         Dresseur dresseur = new Dresseur(pseudo, sexe, starter);
         starter.setDresseur(dresseur);
         System.out.print(dresseur); 
-        Capture capture = new Capture(dresseur);
-        capture = null;
-        Capture capture2 = new Capture(dresseur);
-        Capture capture3 = new Capture(dresseur);
-        Capture capture4 = new Capture(dresseur);
+        String action = "";
+        while(true){
+            System.out.println("que souhaiter vous faire :" + "\n" +
+                                "1: pour marcher" + "\n" +
+                                "2: pour effectuer un combat dans l'arène" + "\n" +
+                                "3: pour acheté des pakeball" + "\n" +
+                                "4: pour faire evoluer un pokemon"
+            );
+            action = myObj.nextLine();
+            switch(action){
+                case "1":
+                    new Capture(dresseur);
+                    break;
+
+                case "2":
+                    System.out.println("combat");
+                    break;
+
+                case "3":
+                    System.out.println("souhaiter vous acheter des pokeball ? 1 pts bonus au TP pour 20pokeball");
+                    action = myObj.nextLine();
+
+                case "4":
+                    System.out.println("a quelle pokemon souhaiter vous donner un bonbon ?");
+                    for(int i =0; i < dresseur.getListePokemon().size(); i++){
+                        System.out.println("" + i + ": pour donner un bonbon a" + dresseur.getListePokemon().get(i).getNom());
+                    }
+                    action = myObj.nextLine();
+                    dresseur.getListePokemon().get(Integer.parseInt(action)).evoluer();
+
+            }
+
+        }
     }
 }

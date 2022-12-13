@@ -12,6 +12,7 @@ public class Dresseur {
     //le pokemon principale du dresseur celui avec lequelle il combat par défaut
     //le pokemon principale est l'index mainPokemon dans la liste listePokemon
     private int mainPokemon = 0;
+    HashMap<String, Integer> bonbonPokemon = new HashMap<String, Integer>();
 
     public Dresseur(String pseudo, int sexe, Pokemon starter){
         this.pseudo = pseudo;
@@ -34,6 +35,15 @@ public class Dresseur {
         this.listePokemeon.add(pokemon);
         this.nbPokemon ++;
         pokemon.setDresseur(this);
+        if(this.bonbonPokemon.containsKey(pokemon.getNom())){
+            bonbonPokemon.put(pokemon.getNom(), bonbonPokemon.get(pokemon.getNom() +1));
+        }else{
+            bonbonPokemon.put(pokemon.getNom(), 1);
+        }
+    }
+
+    public ArrayList<Pokemon> getListePokemon(){
+        return this.listePokemeon;
     }
 
     public void winCombat(){
