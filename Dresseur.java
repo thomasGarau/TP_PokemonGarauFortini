@@ -12,7 +12,8 @@ public class Dresseur {
     //le pokemon principale du dresseur celui avec lequelle il combat par défaut
     //le pokemon principale est l'index mainPokemon dans la liste listePokemon
     private int mainPokemon = 0;
-    HashMap<String, Integer> bonbonPokemon = new HashMap<String, Integer>();
+    private HashMap<String, Integer> bonbonPokemon = new HashMap<String, Integer>();
+    private int nbPokeball = 0;
 
     public Dresseur(String pseudo, int sexe, Pokemon starter){
         this.pseudo = pseudo;
@@ -26,20 +27,25 @@ public class Dresseur {
         setMainPokemon(0);
     }
 
-    public void capturePokemon(Pokemon pokemon){
-        Scanner myObj = new Scanner(System.in);
-        System.out.println("quelle nom souhaiter vous donner a votre" + pokemon.getNom() + "?");
-        String surnom = myObj.nextLine();
-        myObj.close();
-        pokemon.setSurnom(surnom);
-        this.listePokemeon.add(pokemon);
-        this.nbPokemon ++;
-        pokemon.setDresseur(this);
-        if(this.bonbonPokemon.containsKey(pokemon.getNom())){
-            bonbonPokemon.put(pokemon.getNom(), bonbonPokemon.get(pokemon.getNom() +1));
-        }else{
-            bonbonPokemon.put(pokemon.getNom(), 1);
-        }
+    public HashMap<String, Integer> getBonbonPokemon(){
+        return this.bonbonPokemon;
+    }
+
+    public void removeBonbonPokemon(String nom){
+        System.out.println(nom);
+        this.bonbonPokemon.put(nom, this.bonbonPokemon.get(nom) -1);
+    }
+
+    public int getNbPokeball(){
+        return this.nbPokeball;
+    }
+
+    public void addPokeball(){
+        this.nbPokeball += 20;
+    }
+
+    public void throwPokeball(){
+        this.nbPokeball --;
     }
 
     public ArrayList<Pokemon> getListePokemon(){
@@ -86,6 +92,26 @@ public class Dresseur {
         int value = myObj.nextInt();
         myObj.close();
         this.setMainPokemon(value);
+    }
+
+    public void capturePokemon(Pokemon pokemon){
+        Scanner myObj = new Scanner(System.in);
+        System.out.println("quelle nom souhaiter vous donner a votre" + pokemon.getNom() + "?");
+        String surnom = myObj.nextLine();
+        pokemon.setSurnom(surnom);
+        this.listePokemeon.add(pokemon);
+        this.nbPokemon ++;
+        pokemon.setDresseur(this);
+        addBonbon(pokemon.getNom());
+       
+    }
+
+    public void addBonbon(String nomPokemon){
+        if(this.bonbonPokemon.containsKey(nomPokemon)){
+            bonbonPokemon.put(nomPokemon, bonbonPokemon.get(nomPokemon) +1);
+        }else{
+            bonbonPokemon.put(nomPokemon, 1);
+        }
     }
 
     public String toString(){

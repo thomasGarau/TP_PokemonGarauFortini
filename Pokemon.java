@@ -99,10 +99,12 @@ public class Pokemon {
 
     public void evoluer(){
         Random r =new Random();
-        if(this.dresseur.bonbonPokemon.get(this.nom) > 0){
+        if(this.dresseur.getBonbonPokemon().get(this.nom) > 2){
+            // si le pokemon evolue le nom va changé est lorsque l'on va retirer un bonbon cela donneras le nom de l'evolution ce pourquoi on conserve le nom dans une variable locale
+            String name = this.nom;
             if(stade_evo<EVO_MAX){
+                nom=next_evo.get(stade_evo-1);
                 stade_evo+=1;
-                nom=next_evo.get(stade_evo-2);
                 pc+= 4 + r.nextInt(3);
                 pv+= 12 + r.nextInt(12);
                 if(!(changement.isEmpty())){
@@ -112,13 +114,14 @@ public class Pokemon {
                         type.add(changement.get(2));
                     }
                 }
-                System.out.println("votre pokemon a évolué");
+                System.out.println("votre pokemon a évolué nouvelle stats = " + "\n");
+                System.out.println(this);
             }
             else{
                 pc+= 1 + r.nextInt(1);
                 pv+= 2 + r.nextInt(3);
             }
-            this.dresseur.bonbonPokemon.put(this.nom, this.dresseur.bonbonPokemon.get(this.nom) -1);
+            this.dresseur.removeBonbonPokemon(name);
         }else{
             System.out.println("pas assez de bonbon pour faire évoluer ce pokemon");
         }
