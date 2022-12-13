@@ -36,7 +36,10 @@ class ServerClientThread extends Thread {
             outStream.flush();   
           }
           else if(clientMessage.equals("combat")){
-            MultithreadedSocketServer.sendToOther();
+            MultithreadedSocketServer.broadcast();
+          }
+          else if(clientMessage.contains("name")){
+            MultithreadedSocketServer.rename(serverClient,clientMessage.split(" ")[1]);
           }
           else{
             System.out.println("From Client-" +clientMessage);

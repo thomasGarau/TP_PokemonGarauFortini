@@ -133,4 +133,19 @@ public class SystemCombat {
             System.out.println("victoire "+un.getNom());
         }
     }
+
+    public static void combatLigne(Pokemon un ,Pokemon deux){
+        float pv1=un.getpv();
+        float pv2=deux.getpv();
+        while(pv1>0.0 || pv2>0.0){
+            pv2-=attack(un, deux);
+            pv1-=attack(deux, un);
+        }
+        if(pv1<0){
+            System.out.println("victoire "+deux.getNom());
+        }
+        else{
+            System.out.println("victoire "+un.getNom());
+        }
+    }
 }

@@ -5,9 +5,17 @@ import java.util.ArrayList;
 public class MultithreadedSocketServer {
     public static ArrayList <ServerClientThread> listeCo = new ArrayList<>();
 
-    public static void sendToOther() {
+    public static void broadcast() {
         for(ServerClientThread i :listeCo){
-            i.fromServer("bblolbolbolo");
+            i.fromServer("le combat va debuter ..");
+        }
+    }
+
+    public static void rename(Socket nomsSocket,String name){
+        for(ServerClientThread i: listeCo){
+            if(i.serverClient.equals(nomsSocket)){
+                i.setName(name);
+            }
         }
     }
 
