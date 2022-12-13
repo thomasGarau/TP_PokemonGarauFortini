@@ -99,24 +99,28 @@ public class Pokemon {
 
     public void evoluer(){
         Random r =new Random();
-        if(stade_evo<EVO_MAX){
-            stade_evo+=1;
-            nom=next_evo.get(stade_evo-2);
-            pc+= 4 + r.nextInt(3);
-            pv+= 12 + r.nextInt(12);
-            if(!(changement.isEmpty())){
-                if(stade_evo==Integer.parseInt(changement.get(0))){
-                    type.clear();
-                    type.add(changement.get(1));
-                    type.add(changement.get(2));
-
+        if(this.dresseur.bonbonPokemon.get(this.nom) > 0){
+            if(stade_evo<EVO_MAX){
+                stade_evo+=1;
+                nom=next_evo.get(stade_evo-2);
+                pc+= 4 + r.nextInt(3);
+                pv+= 12 + r.nextInt(12);
+                if(!(changement.isEmpty())){
+                    if(stade_evo==Integer.parseInt(changement.get(0))){
+                        type.clear();
+                        type.add(changement.get(1));
+                        type.add(changement.get(2));
+                    }
                 }
-                
+                System.out.println("votre pokemon a évolué");
             }
-        }
-        else{
-            pc+= 1 + r.nextInt(1);
-            pv+= 2 + r.nextInt(3);
+            else{
+                pc+= 1 + r.nextInt(1);
+                pv+= 2 + r.nextInt(3);
+            }
+            this.dresseur.bonbonPokemon.put(this.nom, this.dresseur.bonbonPokemon.get(this.nom) -1);
+        }else{
+            System.out.println("pas assez de bonbon pour faire évoluer ce pokemon");
         }
     }
     
