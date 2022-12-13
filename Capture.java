@@ -1,5 +1,3 @@
-import java.net.SocketTimeoutException;
-import java.rmi.StubNotFoundException;
 import java.util.*;
 public class Capture {
     private Pokemon pokemon;
