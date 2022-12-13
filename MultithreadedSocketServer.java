@@ -1,17 +1,22 @@
 import java.net.*;
 import java.util.ArrayList;
-import java.io.*;
+
 
 public class MultithreadedSocketServer {
     public static ArrayList <ServerClientThread> listeCo = new ArrayList<>();
 
     public static void sendToOther() {
-        System.out.println("abrbllbl");;
-        for(int i=0; i< listeCo.size(); i++){
-            listeCo.get(i).fromServer("bblolbolbolo");
- 
-
+        for(ServerClientThread i :listeCo){
+            i.fromServer("bblolbolbolo");
         }
+    }
+
+    public static String format(){
+        String mess="";
+        for(ServerClientThread i:listeCo){
+            mess+=i+"\n";
+        }
+        return mess;
     }
     public static void main(String[] args) throws Exception {
         try{

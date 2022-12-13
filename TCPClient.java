@@ -15,10 +15,13 @@ public class TCPClient {
       outStream.writeUTF(clientMessage);
       outStream.flush();
       serverMessage=inStream.readUTF();
-      System.out.println(serverMessage + " server message ");
+      if(!serverMessage.equals("")){
+        System.out.println("Server message: "+serverMessage);
+      }
+      
     }
     outStream.close();
-    outStream.close();
+    inStream.close();
     socket.close();
   }catch(Exception e){
     System.out.println(e);
