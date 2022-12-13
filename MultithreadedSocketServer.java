@@ -19,6 +19,15 @@ public class MultithreadedSocketServer {
         }
     }
 
+    public static void  messagePerso(String nomsSocket,ServerClientThread expediteur,String message){
+        for(ServerClientThread i: listeCo){
+            System.out.println(i.getName());
+            if(i.getName().equals(nomsSocket)){
+                i.fromServer(expediteur.getName()+"<<"+ message);
+            }
+        }
+    }
+
     public static String format(){
         String mess="";
         for(ServerClientThread i:listeCo){

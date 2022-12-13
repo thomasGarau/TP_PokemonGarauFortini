@@ -16,7 +16,7 @@ public class TCPClient {
       outStream.flush();
       serverMessage=inStream.readUTF();
       if(!serverMessage.equals("")){
-        System.out.println("Server message: "+serverMessage);
+        System.out.println("Server: "+serverMessage);
       }
       
     }
