@@ -57,12 +57,14 @@ public class jeu {
                     break;
 
                 case "2":
+                    // ne pas oublié de lancer le serveur avant
                     System.out.println("combat");
+                    TCPClient tcpClient = new TCPClient();
                     dresseur.addBonbon(dresseur.getMainPokemon().getNom());
                     break;
 
                 case "3":
-                    System.out.println("souhaiter vous acheter des pokeball ? 1 pts bonus au TP pour 20pokeball oui=y, non=n" );
+                    System.out.println("souhaiter vous acheter des pokeball ? 1 pts bonus au TP pour 20pokeball oui=y, non=n");
                     action = myObj.nextLine();
                     if (action.equals("y")){
                         dresseur.addPokeball();
