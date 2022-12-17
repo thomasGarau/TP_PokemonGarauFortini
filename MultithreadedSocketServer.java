@@ -1,9 +1,11 @@
 import java.net.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 
 public class MultithreadedSocketServer {
     public static ArrayList <ServerClientThread> listeCo = new ArrayList<>();
+    public static ArrayList <ServerClientThread> attente = new ArrayList<>();
 
     public static void broadcast() {
         for(ServerClientThread i :listeCo){
@@ -25,6 +27,30 @@ public class MultithreadedSocketServer {
             if(i.getName().equals(nomsSocket)){
                 i.fromServer(expediteur.getName()+"<<"+ message);
             }
+        }
+    }
+
+    public static void arene(ServerClientThread joueur){
+        attente.add(joueur); 
+        System.out.println(attente.size());
+        if(attente.size()==2){
+            Random r=new Random();
+            int num=r.nextInt(2);
+            ServerClientThread j1,j2;
+            if(num==1){
+                j1=attente.get(1);
+                j2=attente.get(0);
+            }
+            else{
+                j1=attente.get(0);
+                j2=attente.get(1);
+            }
+           j1.fromServer("la bagare 1");
+           j2.fromServer("la bagare 2");
+           attente.clear();
+        }
+        else if (attente.size()>2){
+            joueur.fromServer("trop de joueur connecter dans l'arene");
         }
     }
 
