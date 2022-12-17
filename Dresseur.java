@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.*;
 
-public class Dresseur {
+public class Dresseur implements Serializable {
     private String pseudo;
     private String sexe;
     private int nbPokemon = 0;
@@ -33,7 +34,7 @@ public class Dresseur {
 
     public void removeBonbonPokemon(String nom){
         System.out.println(nom);
-        this.bonbonPokemon.put(nom, this.bonbonPokemon.get(nom) -1);
+        this.bonbonPokemon.put(nom, this.bonbonPokemon.get(nom) -2);
     }
 
     public int getNbPokeball(){
@@ -101,7 +102,6 @@ public class Dresseur {
         pokemon.setSurnom(surnom);
         this.listePokemeon.add(pokemon);
         this.nbPokemon ++;
-        pokemon.setDresseur(this);
         addBonbon(pokemon.getNom());
        
     }

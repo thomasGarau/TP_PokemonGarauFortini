@@ -99,7 +99,7 @@ public class Pokemon {
 
     public void evoluer(){
         Random r =new Random();
-        if(this.dresseur.getBonbonPokemon().get(this.nom) > 2){
+        if(this.dresseur.getBonbonPokemon().get(this.nom) >= 2){
             // si le pokemon evolue le nom va changé est lorsque l'on va retirer un bonbon cela donneras le nom de l'evolution ce pourquoi on conserve le nom dans une variable locale
             String name = this.nom;
             if(stade_evo<EVO_MAX){

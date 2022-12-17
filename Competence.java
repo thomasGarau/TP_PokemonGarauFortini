@@ -1,4 +1,6 @@
-public class Competence {
+import java.io.Serializable;
+
+public class Competence implements Serializable{
     private String nom;
     private String type;
 

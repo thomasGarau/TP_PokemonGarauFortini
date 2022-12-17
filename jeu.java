@@ -1,7 +1,8 @@
+import java.io.IOException;
 import java.util.*;
 
 public class jeu {
-    public static void main(String[] args) { 
+    public static void main(String[] args) throws ClassNotFoundException, IOException { 
          
         Pokedex poke = new Pokedex();
         Scanner myObj = new Scanner(System.in);
@@ -12,9 +13,8 @@ public class jeu {
         String loadOrNew = myObj.nextLine();
         Dresseur dresseur;
 
-        if(loadOrNew == "1"){
-            dresseur = new Dresseur("toto", 0, null);
-            System.out.println("charger sauvegarde");
+        if(loadOrNew.equals("1")){
+            dresseur = Sauvegarde.loadSauvegarde();
 
         }else{
             System.out.println("comment vous appeler vous ?");
@@ -57,41 +57,51 @@ public class jeu {
                     break;
 
                 case "2":
+                    // ne pas oublié de lancer le serveur avant
                     System.out.println("combat");
+                    TCPClient tcpClient = new TCPClient();
                     dresseur.addBonbon(dresseur.getMainPokemon().getNom());
                     break;
 
                 case "3":
-                    System.out.println("souhaiter vous acheter des pokeball ? 1 pts bonus au TP pour 20pokeball oui=y, non=n" );
+                    System.out.println("souhaiter vous acheter des pokeball ? 1 pts bonus au TP pour 20pokeball oui=y, non=n");
                     action = myObj.nextLine();
                     if (action.equals("y")){
                         dresseur.addPokeball();
-                        System.out.println("vous venez de recevoir 20pokeball vous en avez désormais" + dresseur.getNbPokeball());
+                        System.out.println("vous venez de recevoir 20 pokeball vous en avez désormais " + dresseur.getNbPokeball());
                     }
                     break;
 
                 case "4":
                     System.out.println("a quelle pokemon souhaiter vous donner un bonbon ?");
-                    for(int i =0; i < dresseur.getListePokemon().size(); i++){
-                        
-                        System.out.println("" + i + ": pour donner un bonbon a" + dresseur.getListePokemon().get(i).getSurnom() + "nb bonbon posséder = " + dresseur.getBonbonPokemon().get(dresseur.getListePokemon().get(i).getNom()));
+                    int j = 0;
+                    for(j =0; j< dresseur.getListePokemon().size(); j++){
+                        System.out.println("" + j + ": pour donner un bonbon a votre "  + dresseur.getListePokemon().get(j).getNom() + " surnomer " + dresseur.getListePokemon().get(j).getSurnom() + " nb bonbon posséder = " + dresseur.getBonbonPokemon().get(dresseur.getListePokemon().get(j).getNom()));
                     }
-                     
+                    System.out.println(" " + j+1 + "pour annuler");
                     action = myObj.nextLine();
+                    if(Integer.parseInt(action) == j+1){
+                        break;
+                    }
                     dresseur.getListePokemon().get(Integer.parseInt(action)).evoluer();
                     break;
 
                 case "5":
-                    for(int i=0; i< dresseur.getListePokemon().size(); i++){
-                        System.out.println(i + ": pour que votre " + dresseur.getListePokemon().get(i).getNom() +  " " + dresseur.getListePokemon().get(i).getSurnom());
+                    int i;
+                    for(i=0; i< dresseur.getListePokemon().size(); i++){
+                        System.out.println(i + ": pour que votre " + dresseur.getListePokemon().get(i).getNom() +  " " + dresseur.getListePokemon().get(i).getSurnom() + " devienne votre nouveau compagnon");
                     }
+                    System.out.println(" " + i+1 + "pour annuler");
                     action = myObj.nextLine();
+                    if(Integer.parseInt(action) == i+1){
+                        break;
+                    }
                     dresseur.setMainPokemon(Integer.parseInt(action));
                     System.out.println("nouveau compagnon = " + dresseur.getMainPokemon().getNom());
                     break;
 
                 case "6":
-                    System.out.println("sauvegarde");
+                    Sauvegarde.sauvegarde(dresseur);
                     break;
 
                 case "7":
