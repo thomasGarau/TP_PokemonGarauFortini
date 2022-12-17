@@ -29,7 +29,7 @@ public class Capture {
     }
 
     public void combat(){
-        System.out.print("vous avez trouvé un " + this.pokemon.getNom() + "qui a " + this.pokemon.getpv() + " pv");
+        System.out.print("vous avez trouvé un " + this.pokemon.getNom() + " qui a " + this.pokemon.getpv() + " pv");
         Random r =new Random();
         Scanner input2 = new Scanner(System.in);
         String choix = "0";
@@ -69,14 +69,13 @@ public class Capture {
                     dresseur.throwPokeball();
                     double tauxCapture = (0.8 * ((100 - ((this.pokemonSauvageHp / this.pokemonSauvageHpMax) * 100))/100)) * 100;
                     int aleatoire = r.nextInt(100);
-                    System.out.println("hp" + this.pokemonSauvageHp +"hpMax" + this.pokemonSauvageHpMax);
-                    System.out.println("random  " + aleatoire +" taux  " + tauxCapture);
                     if (aleatoire <= tauxCapture){
                         System.out.println("felicitation vous avez capturer le pokemon");
                         dresseur.capturePokemon(this.pokemon);
+                        pokemon.setDresseur(dresseur);
                         return; 
                     }else{
-                        System.out.println("est sortie de la pokeball");
+                        System.out.println("le pokemon est sortie de la pokeball");
                         resultat = SystemCombat.attackAuto(pokemon, dresseur.getMainPokemon());
                         this.pokemonDresseurHp -= resultat;
                         if (pokemonDresseurHp < 1){
