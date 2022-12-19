@@ -20,6 +20,10 @@ public class TCPClient {
         if(!serverMessage.equals("")){
           System.out.println("Server: "+serverMessage);
         }
+        else if(!serverMessage.equals("tatakae")){
+          System.out.println("le combat va commencer");
+          //fonction de combat
+        }
       }
       outStream.close();
       inStream.close();
