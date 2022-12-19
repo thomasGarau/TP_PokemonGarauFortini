@@ -3,6 +3,10 @@ import java.net.*;
 import java.io.*;
 public class TCPClient {
 
+  public void combat(){
+
+  }
+
   public TCPClient(){
     try{
       System.out.println("aaaa");
@@ -22,7 +26,7 @@ public class TCPClient {
         }
         else if(!serverMessage.equals("tatakae")){
           System.out.println("le combat va commencer");
-          //fonction de combat
+          combat();
         }
       }
       outStream.close();
