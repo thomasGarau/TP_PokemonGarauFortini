@@ -25,52 +25,52 @@ public class SystemCombat {
     private static ArrayList <Integer> type_def=new ArrayList(2);
 
     public static int getNum(String type){
-        if(type=="normal"){
+        if(type.equals("normal")){
             return 0;
         }
-        else if(type=="feu"){
+        else if(type.equals("feu")){
             return 1;
         }
-        else if(type=="eau"){
+        else if(type.equals("eau")){
             return 2;
         }
-        else if(type=="plante"){
+        else if(type.equals("plante")){
             return 3;
         }
-        else if(type=="électrick"){
+        else if(type.equals("électrick")){
             return 4;
         }
-        else if(type=="glace"){
+        else if(type.endsWith("glace")){
             return 5;
         }
-        else if(type=="combat"){
+        else if(type.equals("combat")){
             return 6;
         }
-        else if(type=="poison"){
+        else if(type.equals("poison")){
             return 7;
         }
-        else if(type=="sol"){
+        else if(type.equals("sol")){
             return 8;
         }
-        else if(type=="vol"){
+        else if(type.equals("vol")){
             return 9;
         }
-        else if(type=="psy"){
+        else if(type.equals("psy")){
             return 10;
         }
-        else if(type=="insecte"){
+        else if(type.equals("insecte")){
             return 11;
         }
-        else if(type=="roche"){
+        else if(type.equals("roche")){
             return 12;
         }
-        else if(type=="spectre"){
+        else if(type.equals("spectre")){
             return 13;
         }
-        else if(type=="dragon"){
+        else if(type.equals("dragon")){
             return 14;
         }
-        else if(type=="ténèbres"){
+        else if(type.equals("ténèbres")){
             return 15;
         }
         else {
@@ -130,10 +130,14 @@ public class SystemCombat {
         if(type2 != "none"){
             type_def.add(getNum(type2));
         }
+        System.out.println("type1 "+ type1 + " type2 " + type2);
+        System.out.println(type_def);
         if(type_def.size()==1){
+            System.out.println("Systeme combat calcule degat 1");
             return (int) Math.round(pokemon.getpc()*(tableType[choix][type_def.get(0)])); 
          }
          else{
+            System.out.println("Systeme combat calcule dégat 2");
              return (int) Math.round(pokemon.getpc()*(tableType[choix][type_def.get(0)]*tableType[choix][type_def.get(1)]));
          }
     }

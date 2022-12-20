@@ -52,6 +52,7 @@ public class TCPClient {
     String clientMessage="",serverMessage="";
 
     Pokemon selfPokemon = dresseur.getMainPokemon();
+    System.out.println("pc =====" + selfPokemon.getpc());
     int selfHp = selfPokemon.getpv();
     int result = 0;
     
@@ -87,12 +88,12 @@ public class TCPClient {
       opponentHp -= result;
       System.out.println("vous venez d'infliger " + result + " au pokemon adversse");
       System.out.println("hp restant du pokemon adversse " + opponentHp);
-      if(opponentHp < 1){
-        break;
-      }
       clientMessage= String.valueOf(result);
       outStream.writeUTF(clientMessage);
       outStream.flush();
+      if(opponentHp < 1){
+        break;
+      }
       result = Integer.parseInt(inStream.readUTF());
       selfHp -= result;
       System.out.println("le pokemon adverse à attaquer votre pokemon a subit " + result + " dégats");
@@ -124,6 +125,7 @@ public class TCPClient {
     Pokemon selfPokemon = dresseur.getMainPokemon();
     int selfHp = selfPokemon.getpv();
     int result = 0;
+    System.out.println("pc =====" + selfPokemon.getpc());
 
     //recois les information du pokemon adversse
     int opponentHp = Integer.parseInt(inStream.readUTF());
