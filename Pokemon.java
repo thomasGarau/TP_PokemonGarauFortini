@@ -130,67 +130,67 @@ public class Pokemon implements Serializable{
     
     public void assignComp(String type){
 
-        if(type=="normal"){
+        if(type.equals("normal")){
             Competence charge = new Competence(Pokedex.getCompetence("charge"));
             competence.add(charge);
         }
-        else if(type=="feu"){
+        else if(type.equals("feu")){
             Competence flameche = new Competence(Pokedex.getCompetence("flameche"));
             competence.add(flameche);
         }
-        else if(type=="plante"){
+        else if(type.equals("plante")){
             Competence tranch_herbe= new Competence(Pokedex.getCompetence("tranch'herbe"));
             competence.add(tranch_herbe);
         }
-        else if(type=="eau"){
+        else if(type.equals("eau")){
             Competence bulles_do = new Competence(Pokedex.getCompetence("bulles'do"));
             competence.add(bulles_do);
         }
-        else if(type=="électrik"){
+        else if(type.equals("électrik")){
             Competence eclair = new Competence(Pokedex.getCompetence("éclair"));
             competence.add(eclair);
         }
-        else if(type=="glace"){
+        else if(type.equals("glace")){
             Competence poing_glace = new Competence(Pokedex.getCompetence("poing glace"));
             competence.add(poing_glace);
         }
-        else if(type=="combat"){
+        else if(type.equals("combat")){
             Competence balayette = new Competence(Pokedex.getCompetence("balayette"));
             competence.add(balayette);
         }
-        else if(type=="poison"){
+        else if(type.equals("poison")){
             Competence dard_venin = new Competence(Pokedex.getCompetence("dard venin"));
             competence.add(dard_venin);
         }
-        else if(type=="sol"){
+        else if(type.equals("sol")){
             Competence tunnel = new Competence(Pokedex.getCompetence("tunnel"));
             competence.add(tunnel);
         }
-        else if(type=="vol"){
+        else if(type.equals("vol")){
             Competence picpic = new Competence(Pokedex.getCompetence("picpic"));
             competence.add(picpic);
         }
-        else if(type=="psy"){
+        else if(type.equals("psy")){
             Competence psyko = new Competence(Pokedex.getCompetence("psyko"));
             competence.add(psyko);
         }
-        else if(type=="insecte"){
+        else if(type.equals("insecte")){
             Competence dard_nue = new Competence(Pokedex.getCompetence("dard nuée"));
             competence.add(dard_nue);
         }
-        else if(type=="roche"){
+        else if(type.equals("roche")){
             Competence eboulement = new Competence(Pokedex.getCompetence("éboulement"));
             competence.add(eboulement);
         }
-        else if(type=="spectre"){
+        else if(type.equals("spectre")){
             Competence griffe_ombre = new Competence(Pokedex.getCompetence("griffe ombre"));
             competence.add(griffe_ombre);
         }
-        else if(type=="dragon"){
+        else if(type.equals("dragon")){
             Competence draco_griffe = new Competence(Pokedex.getCompetence("draco-griffe"));
             competence.add(draco_griffe);
         }
-        else if(type=="ténèbres"){
+        else if(type.equals("ténèbres")){
             Competence machouille = new Competence(Pokedex.getCompetence("machouille"));
             competence.add(machouille);
         }
