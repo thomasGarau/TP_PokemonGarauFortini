@@ -25,7 +25,7 @@ public class MultithreadedSocketServer {
         for(ServerClientThread i: listeCo){
             System.out.println(i.getName());
             if(i.getName().equals(nomsSocket)){
-                i.fromServer(expediteur.getName()+"<<"+ message);
+                i.fromServer(message);
             }
         }
     }
@@ -45,9 +45,11 @@ public class MultithreadedSocketServer {
                 j1=attente.get(0);
                 j2=attente.get(1);
             }
-           j1.fromServer("la bagare 1");
-           j2.fromServer("la bagare 2");
-           attente.clear();
+            j1.setAdverssaire(j2.getName());
+            j2.setAdverssaire(j1.getName());
+            j1.fromServer("combat1");
+            j2.fromServer("combat2");
+            attente.clear();
         }
         else if (attente.size()>2){
             joueur.fromServer("trop de joueur connecter dans l'arene");

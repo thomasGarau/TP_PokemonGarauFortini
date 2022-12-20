@@ -7,6 +7,7 @@ import java.io.IOException;
 class ServerClientThread extends Thread {
     Socket serverClient;
     int clientNo;
+    String threadDest;
   
     ServerClientThread(Socket inSocket,int counter){
       serverClient = inSocket;
@@ -21,6 +22,10 @@ class ServerClientThread extends Thread {
       } catch (IOException e) {
         e.printStackTrace();
       }
+    }
+
+    public void setAdverssaire(String name){
+      this.threadDest = name;
     }
   
     public void run(){
@@ -40,19 +45,9 @@ class ServerClientThread extends Thread {
           }
           else if(clientMessage.contains("name")){
             MultithreadedSocketServer.rename(serverClient,clientMessage.split(" ")[1]);
-            outStream.writeUTF("nom modifié");
-          }
-          else if(clientMessage.contains("Msg")){
-            String[] x=clientMessage.split(":");
-            String[] sx=x[1].split(">>");
-            String namesoc=sx[0];
-            String message=sx[1];
-            MultithreadedSocketServer.messagePerso(namesoc,this,message);
-            outStream.writeUTF("");
           }
           else{
-            System.out.println("From Client-" +clientMessage);
-            outStream.writeUTF("");
+            MultithreadedSocketServer.messagePerso(threadDest,this,clientMessage);
           }
         }
         inStream.close();
@@ -64,5 +59,4 @@ class ServerClientThread extends Thread {
         System.out.println("Client -" + clientNo + " exit!! ");
       }
     }
-
 }
