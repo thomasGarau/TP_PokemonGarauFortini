@@ -1,4 +1,5 @@
 import java.util.*;
+import java.math.*;
 public class SystemCombat {
     private final static double[][] tableType=
     {
@@ -118,7 +119,7 @@ public class SystemCombat {
         }
     }
 
-    public static double attackOnline(Pokemon pokemon, String type1, String type2){
+    public static int attackOnline(Pokemon pokemon, String type1, String type2){
         Scanner input3 = new Scanner(System.in);
         System.out.println("choisir un competence:");
         System.out.print(pokemon.getCompetences());
@@ -130,27 +131,11 @@ public class SystemCombat {
             type_def.add(getNum(type2));
         }
         if(type_def.size()==1){
-            return pokemon.getpc()*(tableType[choix][type_def.get(0)]); 
+            return (int) Math.round(pokemon.getpc()*(tableType[choix][type_def.get(0)])); 
          }
          else{
-             return pokemon.getpc()*(tableType[choix][type_def.get(0)]*tableType[choix][type_def.get(1)]);
+             return (int) Math.round(pokemon.getpc()*(tableType[choix][type_def.get(0)]*tableType[choix][type_def.get(1)]));
          }
-    }
-
-
-    public static void combat(Pokemon un ,Pokemon deux){
-        float pv1=un.getpv();
-        float pv2=deux.getpv();
-        while(pv1>0.0 || pv2>0.0){
-            pv2-=attack(un, deux);
-            pv1-=attack(deux, un);
-        }
-        if(pv1<0){
-            System.out.println("victoire "+deux.getNom());
-        }
-        else{
-            System.out.println("victoire "+un.getNom());
-        }
     }
 
 }

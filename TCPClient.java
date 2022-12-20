@@ -53,7 +53,7 @@ public class TCPClient {
 
     Pokemon selfPokemon = dresseur.getMainPokemon();
     int selfHp = selfPokemon.getpv();
-    double result = 0;
+    int result = 0;
     
     //envoie les information de sont pokemon à l'adverssaire
     outStream.writeUTF(String.valueOf(selfHp));
@@ -123,7 +123,7 @@ public class TCPClient {
 
     Pokemon selfPokemon = dresseur.getMainPokemon();
     int selfHp = selfPokemon.getpv();
-    double result = 0;
+    int result = 0;
 
     //recois les information du pokemon adversse
     int opponentHp = Integer.parseInt(inStream.readUTF());
