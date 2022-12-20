@@ -59,7 +59,7 @@ public class jeu {
                 case "2":
                     // ne pas oublié de lancer le serveur avant
                     System.out.println("combat");
-                    TCPClient tcpClient = new TCPClient();
+                    TCPClient tcpClient = new TCPClient(dresseur);
                     dresseur.addBonbon(dresseur.getMainPokemon().getNom());
                     break;
 
@@ -78,9 +78,9 @@ public class jeu {
                     for(j =0; j< dresseur.getListePokemon().size(); j++){
                         System.out.println("" + j + ": pour donner un bonbon a votre "  + dresseur.getListePokemon().get(j).getNom() + " surnomer " + dresseur.getListePokemon().get(j).getSurnom() + " nb bonbon posséder = " + dresseur.getBonbonPokemon().get(dresseur.getListePokemon().get(j).getNom()));
                     }
-                    System.out.println(" " + j+1 + "pour annuler");
+                    System.out.println(" " + j + "pour annuler");
                     action = myObj.nextLine();
-                    if(Integer.parseInt(action) == j+1){
+                    if(Integer.parseInt(action) == j){
                         break;
                     }
                     dresseur.getListePokemon().get(Integer.parseInt(action)).evoluer();
@@ -91,9 +91,9 @@ public class jeu {
                     for(i=0; i< dresseur.getListePokemon().size(); i++){
                         System.out.println(i + ": pour que votre " + dresseur.getListePokemon().get(i).getNom() +  " " + dresseur.getListePokemon().get(i).getSurnom() + " devienne votre nouveau compagnon");
                     }
-                    System.out.println(" " + i+1 + "pour annuler");
+                    System.out.println(" " + i + "pour annuler");
                     action = myObj.nextLine();
-                    if(Integer.parseInt(action) == i+1){
+                    if(Integer.parseInt(action) == i){
                         break;
                     }
                     dresseur.setMainPokemon(Integer.parseInt(action));

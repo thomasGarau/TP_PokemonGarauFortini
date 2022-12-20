@@ -1,6 +1,7 @@
 import java.util.Random;
+import java.io.Serializable;
 import java.util.ArrayList;
-public class Pokemon {
+public class Pokemon implements Serializable{
     private String nom;
     private int pc;
     private int pv;
@@ -145,7 +146,7 @@ public class Pokemon {
             Competence bulles_do = new Competence(Pokedex.getCompetence("bulles'do"));
             competence.add(bulles_do);
         }
-        else if(type=="électrick"){
+        else if(type=="électrik"){
             Competence eclair = new Competence(Pokedex.getCompetence("éclair"));
             competence.add(eclair);
         }

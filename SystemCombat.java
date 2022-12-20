@@ -118,6 +118,25 @@ public class SystemCombat {
         }
     }
 
+    public static double attackOnline(Pokemon pokemon, String type1, String type2){
+        Scanner input3 = new Scanner(System.in);
+        System.out.println("choisir un competence:");
+        System.out.print(pokemon.getCompetences());
+        int input = input3.nextInt();
+        ArrayList <Integer> type_def=new ArrayList(2);
+        int choix=getNum(pokemon.getCompetences().get(input -1).getType());
+        type_def.add(getNum(type1));
+        if(type2 != "none"){
+            type_def.add(getNum(type2));
+        }
+        if(type_def.size()==1){
+            return pokemon.getpc()*(tableType[choix][type_def.get(0)]); 
+         }
+         else{
+             return pokemon.getpc()*(tableType[choix][type_def.get(0)]*tableType[choix][type_def.get(1)]);
+         }
+    }
+
 
     public static void combat(Pokemon un ,Pokemon deux){
         float pv1=un.getpv();
@@ -134,18 +153,4 @@ public class SystemCombat {
         }
     }
 
-    public static void combatLigne(Pokemon un ,Pokemon deux){
-        float pv1=un.getpv();
-        float pv2=deux.getpv();
-        while(pv1>0.0 || pv2>0.0){
-            pv2-=attack(un, deux);
-            pv1-=attack(deux, un);
-        }
-        if(pv1<0){
-            System.out.println("victoire "+deux.getNom());
-        }
-        else{
-            System.out.println("victoire "+un.getNom());
-        }
-    }
 }

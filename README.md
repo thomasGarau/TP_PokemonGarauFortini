@@ -31,7 +31,7 @@ les dégat sont calculé à partir de l'élément de l'attaque est du ou des él
 Donner un bonbon à un pokémon pouvant évoluer revient à le faire évoluer
 un pokémon qui évolue change de nom gagne des stats et peut gagner un nouveau type
  
- 
+
 Fonctionnement instanciation des pokémon :
  
 Au démarrage du jeu un objet pokédex est instancié. Dans celui-ci l'ensemble des pokémon 1er évolution de la 1er génération sont instancié avec un minimum d'attributs
