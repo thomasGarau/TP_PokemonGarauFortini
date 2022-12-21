@@ -1,31 +1,35 @@
 import java.io.IOException;
 import java.util.*;
 
+//classe principale consistant en une boucle infinie
 public class jeu {
     public static void main(String[] args) throws ClassNotFoundException, IOException { 
          
+        //on initialise un pokedex pour avoir la reférence de tous les pokemon
         Pokedex poke = new Pokedex();
         Scanner myObj = new Scanner(System.in);
-        System.out.println("souhaiter vous charger une sauvegarde ou créer une nouvelle partie ?" + "\n" +
-                            "1:charger une sauvegarde" + "\n" +
+        System.out.println("Charger une sauvegarde ou nouvelle partie ?\n" +
+                            "1:charger une sauvegarde\n" +
                             "2: nouvelle partie"
         );
-        String loadOrNew = myObj.nextLine();
+        int loadOrNew = myObj.nextInt();
         Dresseur dresseur;
+        myObj.nextLine();
 
-        if(loadOrNew.equals("1")){
+        if(loadOrNew==1){
+            //on load une serialisation d'une precedente instance
             dresseur = Sauvegarde.loadSauvegarde();
 
         }else{
-            System.out.println("comment vous appeler vous ?");
+            System.out.println("Votre nom ?");
             String pseudo = myObj.nextLine();
 
-            System.out.println("êtes vous un garcon: taper 1 ou une fille: taper 2");
+            System.out.println("êtes vous un garcon:1 ou une fille:2");
             int sexe = myObj.nextInt();
 
-            System.out.println("avez qu'elle pokemon souhaiter vous commencer votre aventure?" + "\n" + 
-            "taper 1 pour Bulbizarre le pokemon de type plante" + "\n" +
-            "2 pour salamèche le pokemon de type feu" + "\n" +
+            System.out.println("avec quel pokemon souhaiter vous commencer votre aventure?\n"+ 
+            "1 pour Bulbizarre le pokemon de type plante\n"+
+            "2 pour salamèche le pokemon de type feu\n"+
             "3 pour carapuce le pokemon de type eau");
             int choixStarter = myObj.nextInt();
 
@@ -33,22 +37,23 @@ public class jeu {
             dresseur = new Dresseur(pseudo, sexe, starter);
             starter.setDresseur(dresseur);
             dresseur.addBonbon(starter.getNom());
+            myObj.nextLine();
 
-            System.out.print("quelle surnom souhaiter vous donné a votre pokemon");
+            System.out.print("quel surnom souhaiter vous donné a votre pokemon\n");
             String surnom = myObj.nextLine();
             starter.setSurnom(surnom);
         }
 
         String action = "";
         while(true){
-            System.out.println("que souhaiter vous faire :" + "\n" +
-                                "1: pour marcher" + "\n" +
-                                "2: pour effectuer un combat dans l'arène" + "\n" +
-                                "3: pour acheté des pakeball" + "\n" +
-                                "4: pour faire evoluer un pokemon" + "\n" +
-                                "5: pour changé votre pokemon compagnon" + "\n" +
-                                "6: pour effectuer une sauvegarde" + "\n" +
-                                "7: pour quiter"
+            System.out.println("que souhaiter vous faire :\n" +
+                                "1: marcher\n" +
+                                "2: effectuer un combat dans l'arène\n" +
+                                "3: acheter des pokeballs\n" +
+                                "4: faire evoluer un pokemon\n" +
+                                "5: changer votre pokemon compagnon\n" +
+                                "6: sauvegarder\n" +
+                                "7: quiter"
             );
             action = myObj.nextLine();
             switch(action){
@@ -60,23 +65,22 @@ public class jeu {
                     // ne pas oublié de lancer le serveur avant
                     System.out.println("combat");
                     TCPClient tcpClient = new TCPClient(dresseur);
-                    dresseur.addBonbon(dresseur.getMainPokemon().getNom());
                     break;
 
                 case "3":
-                    System.out.println("souhaiter vous acheter des pokeball ? 1 pts bonus au TP pour 20pokeball oui=y, non=n");
+                    System.out.println("souhaiter vous acheter des pokeballs ? 1 pts bonus au TP pour 20pokeball oui=y, non=n");
                     action = myObj.nextLine();
                     if (action.equals("y")){
                         dresseur.addPokeball();
-                        System.out.println("vous venez de recevoir 20 pokeball vous en avez désormais " + dresseur.getNbPokeball());
+                        System.out.println("vous recevez 20 pokeballs, vous en avez désormais " + dresseur.getNbPokeball());
                     }
                     break;
 
                 case "4":
-                    System.out.println("a quelle pokemon souhaiter vous donner un bonbon ?");
+                    System.out.println("à quel pokemon souhaiter vous donner un bonbon ?");
                     int j = 0;
                     for(j =0; j< dresseur.getListePokemon().size(); j++){
-                        System.out.println("" + j + ": pour donner un bonbon a votre "  + dresseur.getListePokemon().get(j).getNom() + " surnomer " + dresseur.getListePokemon().get(j).getSurnom() + " nb bonbon posséder = " + dresseur.getBonbonPokemon().get(dresseur.getListePokemon().get(j).getNom()));
+                        System.out.println("" + j + ": pour donner un bonbon a votre "  + dresseur.getListePokemon().get(j).getNom() + " nommé: " + dresseur.getListePokemon().get(j).getSurnom() + " nb bonbons possédés = " + dresseur.getBonbonPokemon().get(dresseur.getListePokemon().get(j).getNom()));
                     }
                     System.out.println(" " + j + "pour annuler");
                     action = myObj.nextLine();
@@ -105,7 +109,7 @@ public class jeu {
                     break;
 
                 case "7":
-                    System.out.println("Aurevoire");
+                    System.out.println("Aurevoir");
                     return;
             }
 

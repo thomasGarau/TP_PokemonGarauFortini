@@ -6,11 +6,11 @@ public class Capture {
     private double pokemonSauvageHpMax;
     private double pokemonDresseurHp;
 
+    //demarre une rencontre avec un pokemon de stade1 aléatoire
     public Capture(Dresseur dresseur){
         this.dresseur = dresseur;
         Random r =new Random();
         int a  = r.nextInt(3);
-        System.out.print(a);
         // le dresseur a une chance sur trois de tomber un pokemon
         if (a > 1){
             int i = 1 + r.nextInt(Pokedex.getPokedex().size());
@@ -18,82 +18,89 @@ public class Capture {
             this.pokemonDresseurHp = dresseur.getMainPokemon().getpv();
             combat();
         }else{
-            System.out.print("Vous n'avez rien trouvé");
+            System.out.print("Vous n'avez rien trouvé \n");
         }
     }
 
+    //la fonction cree un pokemon avec un attribut dresseur pour qu'il soit capturable
     public void createPokemon(Dresseur dresseur, Pokemon pokemon){
         this.pokemon = new Pokemon(pokemon);
         this.pokemonSauvageHp = this.pokemon.getpv();
         this.pokemonSauvageHpMax = this.pokemon.getpv();
     }
 
+    //engage le combat contre un pokemon sauvage
     public void combat(){
-        System.out.print("vous avez trouvé un " + this.pokemon.getNom() + " qui a " + this.pokemon.getpv() + " pv");
+        System.out.print("vous avez trouvé un " + this.pokemon.getNom() + " PV: " + this.pokemon.getpv()+" ");
         Random r =new Random();
+        //on capte l'input grace à un scanner
         Scanner input2 = new Scanner(System.in);
-        String choix = "0";
+        int choix = 0;
+        boolean cont=true;
 
-        while (true){            
-            System.out.println("que shouaiter vous faire ? Taper 1: pour attaquer, 2: pour lancer une pokeball, 3: pour fuire ");
-            choix = input2.nextLine();
-            System.out.println("choix" + choix);
+        while (cont){            
+            System.out.println("\nfaite votre choix! 1:attaque  2:pokeball 3:fuite ");
+            
+            choix=input2.nextInt();
+            
             double resultat;
 
-            if(choix.equals("1")){
-                System.out.println("bonjour");
-                resultat = SystemCombat.attack(dresseur.getMainPokemon(), pokemon);
-                System.out.println(resultat);
-                System.out.println(pokemonSauvageHp);
-                this.pokemonSauvageHp -= resultat;
-                if(pokemonSauvageHp < 1){
-                    System.out.print("le pokemon est mort dans d'atroce souffrance ");
-                    this.pokemon = null;
-                    return;
-                } 
-                System.out.print("pv restant du pokemon sauvage : " + this.pokemonSauvageHp);
-                resultat = SystemCombat.attackAuto(pokemon, dresseur.getMainPokemon());
-                this.pokemonDresseurHp -= resultat;
-                if (pokemonDresseurHp < 1){
-                    System.out.print("les PV de votre pokemon on atteint 0 vous avez perdu ");
-                    return;
-                }
-                System.out.print("pv restant de votre pokemon : " + this.pokemonDresseurHp);
-            }
-
-            else if(choix.equals("2")){
-                //revient a faire 100 - le pourcentage soit le pourcentage inverse
-                //et 0.8 le taux de capture max * le pourcentage inversse c'est a dire plus le pourcentage est bas plus le taux de capture est elevé
-                //et cela car moins le pokemon a de pv + on a de chance de le capturer 
-                if(dresseur.getNbPokeball() > 1){
-                    dresseur.throwPokeball();
-                    double tauxCapture = (0.8 * ((100 - ((this.pokemonSauvageHp / this.pokemonSauvageHpMax) * 100))/100)) * 100;
-                    int aleatoire = r.nextInt(100);
-                    if (aleatoire <= tauxCapture){
-                        System.out.println("felicitation vous avez capturer le pokemon");
-                        dresseur.capturePokemon(this.pokemon);
-                        pokemon.setDresseur(dresseur);
-                        return; 
-                    }else{
-                        System.out.println("le pokemon est sortie de la pokeball");
-                        resultat = SystemCombat.attackAuto(pokemon, dresseur.getMainPokemon());
-                        this.pokemonDresseurHp -= resultat;
-                        if (pokemonDresseurHp < 1){
-                        System.out.print("les PV de votre pokemon on atteint 0 vous avez perdu ");
+            switch(choix){
+                case 1:
+                    resultat = SystemCombat.attack(dresseur.getMainPokemon(), pokemon);
+                    this.pokemonSauvageHp -= resultat;
+                    if(pokemonSauvageHp < 1){
+                        System.out.print("le pokemon sauvage est KO!! ");
+                        //on detruit l'instance
+                        this.pokemon = null;
                         return;
-                        }
-                        System.out.print("pv restant de votre pokemon : " + this.pokemonDresseurHp);
-                    }
-                }else{
-                    System.out.println("nombre de pokeball insufisant");
-                }
+                    } 
 
-            }else if(choix.equals("3")){
-                System.out.print("Vous avez fuit");
-                this.pokemon = null;
-                return;
+                    System.out.print("Pv restant du pokemon sauvage : " + this.pokemonSauvageHp+" ");
+                    resultat = SystemCombat.attackAuto(pokemon, dresseur.getMainPokemon());
+                    this.pokemonDresseurHp -= resultat;
+
+                    if (pokemonDresseurHp < 1){
+                        System.out.print("Votre pokémon est KO!vous prenez la fuite..");
+                        return;
+                    }
+                    System.out.print("Pv restant de votre pokemon : " + this.pokemonDresseurHp+"\n");
+                    break;
+                case 2:
+                    //revient a faire 100 - le pourcentage soit le pourcentage inverse
+                    //et 0.8 le taux de capture max * le pourcentage inversse c'est a dire plus le pourcentage est bas plus le taux de capture est elevé
+                    //et cela car moins le pokemon a de pv + on a de chance de le capturer 
+                    if(dresseur.getNbPokeball() > 1){
+                        dresseur.throwPokeball();
+                        double tauxCapture = (0.8 * ((100 - ((this.pokemonSauvageHp / this.pokemonSauvageHpMax) * 100))/100)) * 100;
+                        int aleatoire = r.nextInt(100);
+                        if (aleatoire <= tauxCapture){
+                            System.out.println("félicitation! vous avez capturer le pokemon\n");
+                            dresseur.capturePokemon(this.pokemon);
+                            pokemon.setDresseur(dresseur);
+                            return; 
+                        }
+                        else{
+                            System.out.println("le pokemon est sortie de la pokeball!");
+                            resultat = SystemCombat.attackAuto(pokemon, dresseur.getMainPokemon());
+                            this.pokemonDresseurHp -= resultat;
+                            if (pokemonDresseurHp < 1){
+                                System.out.print("Votre pokémon est KO!vous prenez la fuite..\n");
+                                return;
+                            }
+                            System.out.print("pv restant de votre pokemon : " + this.pokemonDresseurHp);
+                        }
+                    }
+                    else{
+                        System.out.println("nombre de pokeballs insufisant\n");
+                    }
+                    break;
+                case 3:
+                    System.out.print("Vous prennez la fuite \n");
+                    this.pokemon = null;
+                    cont=false;
+                    break;
             }
         }
     }
-    
 }

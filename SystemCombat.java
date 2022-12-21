@@ -1,6 +1,8 @@
 import java.util.*;
-import java.math.*;
+
 public class SystemCombat {
+    //chaque lignes et colonnes represnte un type
+    //1 pour pas d'effet ,0.5 resistance,2 super efficace
     private final static double[][] tableType=
     {
         {1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.5,0.0,1.0,1.0,0.5},
@@ -22,8 +24,10 @@ public class SystemCombat {
         {1.0,0.5,0.5,1.0,1.0,2.0,1.0,1.0,1.0,1.0,1.0,1.0,2.0,1.0,1.0,1.0,0.5}
     };
    
-    private static ArrayList <Integer> type_def=new ArrayList(2);
+    private static ArrayList <Integer> type_def=new ArrayList<Integer>(2);
 
+    //on asssocie chaque type a un numero pour acceder a 
+    //la matrice des resistances
     public static int getNum(String type){
         if(type.equals("normal")){
             return 0;
@@ -73,6 +77,7 @@ public class SystemCombat {
         else if(type.equals("ténèbres")){
             return 15;
         }
+        //type acier
         else {
             return 16;
         }    
@@ -82,13 +87,18 @@ public class SystemCombat {
         return tableType;
     }
 
+    public static ArrayList<Integer> getType_def() {
+        return type_def;
+    }
+
     //attack et utilisé par les dresseur ils choisissent leur attack est le calcule de dégat et effectué 
     public static double attack(Pokemon att,Pokemon def){
         Scanner input3 = new Scanner(System.in);
-        System.out.println("choisir un competence:");
+        System.out.println("choisir un competence: ");
         System.out.print(att.getCompetences());
         int input = input3.nextInt();
-        ArrayList <Integer> type_def=new ArrayList(2);
+        //input3.close();
+        ArrayList <Integer> type_def=new ArrayList<Integer>(2);
         int choix=getNum(att.getCompetences().get(input -1).getType());
         for(int i=0;i<def.getType().size();i++){
             type_def.add(getNum(def.getType().get(i)));
@@ -106,7 +116,7 @@ public class SystemCombat {
     public static double attackAuto(Pokemon att,Pokemon def){
         Random r =new Random();
         int input = r.nextInt(att.getCompetence().size());
-        ArrayList <Integer> type_def=new ArrayList(2);
+        ArrayList <Integer> type_def=new ArrayList<Integer>(2);
         int choix=getNum(att.getCompetences().get(input).getType());
         for(int i=0;i<def.getType().size();i++){
             type_def.add(getNum(def.getType().get(i)));
@@ -121,24 +131,20 @@ public class SystemCombat {
 
     public static int attackOnline(Pokemon pokemon, String type1, String type2){
         Scanner input3 = new Scanner(System.in);
-        System.out.println("choisir un competence:");
+        System.out.println("choisir un competence: ");
         System.out.print(pokemon.getCompetences());
         int input = input3.nextInt();
-        ArrayList <Integer> type_def=new ArrayList(2);
+        ArrayList <Integer> type_def=new ArrayList<Integer>(2);
         int choix=getNum(pokemon.getCompetences().get(input -1).getType());
         type_def.add(getNum(type1));
         if(type2 != "none"){
             type_def.add(getNum(type2));
         }
-        System.out.println("type1 "+ type1 + " type2 " + type2);
-        System.out.println(type_def);
         if(type_def.size()==1){
-            System.out.println("Systeme combat calcule degat 1");
             return (int) Math.round(pokemon.getpc()*(tableType[choix][type_def.get(0)])); 
          }
          else{
-            System.out.println("Systeme combat calcule dégat 2");
-             return (int) Math.round(pokemon.getpc()*(tableType[choix][type_def.get(0)]*tableType[choix][type_def.get(1)]));
+            return (int) Math.round(pokemon.getpc()*(tableType[choix][type_def.get(0)]*tableType[choix][type_def.get(1)]));
          }
     }
 

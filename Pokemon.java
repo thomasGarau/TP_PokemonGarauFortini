@@ -1,6 +1,7 @@
 import java.util.Random;
 import java.io.Serializable;
 import java.util.ArrayList;
+
 public class Pokemon implements Serializable{
     private String nom;
     private int pc;
@@ -98,10 +99,12 @@ public class Pokemon implements Serializable{
         return competence;
     }
 
+    //provoque l'evolution si 5 bonbons ou plus;
+    //si l'evo max est atteinte augmente juste les stats; 
     public void evoluer(){
         Random r =new Random();
-        if(this.dresseur.getBonbonPokemon().get(this.nom) >= 2){
-            // si le pokemon evolue le nom va changé est lorsque l'on va retirer un bonbon cela donneras le nom de l'evolution ce pourquoi on conserve le nom dans une variable locale
+        if(this.dresseur.getBonbonPokemon().get(this.nom) >= 5){
+            // si le pokemon evolue le nom va changer , donc on stock l'ancien nom
             String name = this.nom;
             if(stade_evo<EVO_MAX){
                 nom=next_evo.get(stade_evo-1);
@@ -115,19 +118,22 @@ public class Pokemon implements Serializable{
                         type.add(changement.get(2));
                     }
                 }
-                System.out.println("votre pokemon a évolué nouvelle stats = " + "\n");
+                System.out.println("votre pokemon a évolué ,nouvelle stats:\n");
                 System.out.println(this);
             }
             else{
                 pc+= 1 + r.nextInt(1);
                 pv+= 2 + r.nextInt(3);
+                System.out.println("votre pokemon a monté de niveau, nouvelle stats:\n");
+                System.out.println(this);
             }
             this.dresseur.removeBonbonPokemon(name);
         }else{
-            System.out.println("pas assez de bonbon pour faire évoluer ce pokemon");
+            System.out.println("pas assez de bonbon pour faire évoluer ce pokemon ");
         }
     }
     
+    //assigne une attaque de base en accord avec le(s) type(s) du pokemon
     public void assignComp(String type){
 
         if(type.equals("normal")){
@@ -209,7 +215,7 @@ public class Pokemon implements Serializable{
             a += type.get(i) + " ";
         }
         for(int i=0; i< this.competence.size(); i++){
-            b+="competence " +  this.competence.get(i).getNom() + " de type : " + this.competence.get(i).getType() + "; ";
+            b+="competence "+this.competence.get(i).getNom()+" de type : "+this.competence.get(i).getType() + "; ";
 
         }
         for(int i=0; i< this.next_evo.size(); i++){
@@ -217,16 +223,9 @@ public class Pokemon implements Serializable{
 
         }
     
-        return (
-            "nom " + this.nom + "\n" +
-            "quantiter pc " + this.pc + "\n" +
-            "quantiter pv " + this.pv + "\n" +
-            "type(s) " + a + "\n" +
-            "stade d'évolution " +this.stade_evo + "\n" +
-            "prochaine evolution " + c + "\n" +
-            "dresseur " + d + "\n" +  
-            "compétence possédé : " + b       
-            );
+        return 
+            "Nom: "+ this.nom +"\nPc: "+this.pc+"\nPv: "+this.pv+"\nType(s): " + a +"\nStade d'évolution: " 
+            +this.stade_evo+"\nProchaine evolution: "+c+"\nDresseur: "+d+"\nCompétence possédé : "+b;
     }
     
 }

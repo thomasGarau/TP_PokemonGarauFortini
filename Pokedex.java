@@ -124,6 +124,7 @@ public class Pokedex {
         ));
 
     }
+    
     public static Competence getCompetence(String nom){
         for(int i=0; i < listeCompetence.size(); i++){
             if(listeCompetence.get(i).getNom().equals(nom)){

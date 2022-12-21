@@ -3,7 +3,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-
+//thread demarré par le serveur unique à chaque client
 class ServerClientThread extends Thread {
     Socket serverClient;
     int clientNo;
@@ -14,6 +14,8 @@ class ServerClientThread extends Thread {
       clientNo=counter;
     }
 
+    //redistribut un message venant du serveur
+    //fait le pont entre serveur et TCP
     public void fromServer(String mess){
       try {
         DataOutputStream outStream = new DataOutputStream(serverClient.getOutputStream());
@@ -27,12 +29,15 @@ class ServerClientThread extends Thread {
     public void setAdverssaire(String name){
       this.threadDest = name;
     }
-  
+    
+    //redef de la fonction run()
     public void run(){
       try{
         DataInputStream inStream = new DataInputStream(serverClient.getInputStream());
         DataOutputStream outStream = new DataOutputStream(serverClient.getOutputStream());
         String clientMessage="", serverMessage="";
+        //on ecoute le client en continu et on attends de lui
+        //soit un message soit une commande
         while(!clientMessage.equals("quit")){
           clientMessage=inStream.readUTF();
           if(clientMessage.equals("joueur")){

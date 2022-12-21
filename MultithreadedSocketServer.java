@@ -2,17 +2,19 @@ import java.net.*;
 import java.util.ArrayList;
 import java.util.Random;
 
-
+//classe du Serveur 
 public class MultithreadedSocketServer {
     public static ArrayList <ServerClientThread> listeCo = new ArrayList<>();
     public static ArrayList <ServerClientThread> attente = new ArrayList<>();
 
+    //envoi d'un message a tous les clients
     public static void broadcast() {
         for(ServerClientThread i :listeCo){
             i.fromServer("le combat va debuter ..");
         }
     }
 
+    //permet de renomer un thread pour differencier les joueurs
     public static void rename(Socket nomsSocket,String name){
         for(ServerClientThread i: listeCo){
             if(i.serverClient.equals(nomsSocket)){
@@ -21,6 +23,7 @@ public class MultithreadedSocketServer {
         }
     }
 
+    //envoi d'un message a un seul joueur
     public static void  messagePerso(String nomsSocket,ServerClientThread expediteur,String message){
         for(ServerClientThread i: listeCo){
             System.out.println(i.getName());
@@ -30,6 +33,8 @@ public class MultithreadedSocketServer {
         }
     }
 
+
+    //la fonction decide qui commencera premier et declanche le cobat dans les TCP
     public static void arene(ServerClientThread joueur){
         attente.add(joueur); 
         System.out.println(attente.size());
@@ -47,15 +52,16 @@ public class MultithreadedSocketServer {
             }
             j1.setAdverssaire(j2.getName());
             j2.setAdverssaire(j1.getName());
-            j1.fromServer("combat1");
-            j2.fromServer("combat2");
+            j1.fromServer("premier");
+            j2.fromServer("second");
             attente.clear();
         }
         else if (attente.size()>2){
-            joueur.fromServer("trop de joueur connecter dans l'arene");
+            joueur.fromServer("trop de joueur connecté dans l'arene");
         }
     }
 
+    //renvoi la liste des joueur dans un format lisible
     public static String format(){
         String mess="";
         for(ServerClientThread i:listeCo){
@@ -63,6 +69,8 @@ public class MultithreadedSocketServer {
         }
         return mess;
     }
+    //le serveur enregistre les joueur qui se connecte et les stocke dans une liste puis 
+    //demarre un thread pou chaque joueur
     public static void main(String[] args) throws Exception {
         try{
             ServerSocket server=new ServerSocket(8888);
@@ -70,9 +78,9 @@ public class MultithreadedSocketServer {
             System.out.println("Server Started ....");
             while(true){
                 counter++;
-                Socket serverClient=server.accept();  //server accept the client connection request
+                Socket serverClient=server.accept();  //serveur accepte le client 
                 System.out.println(" >> " + "Client No:" + counter + " started!");
-                ServerClientThread sct = new ServerClientThread(serverClient,counter); //send  the request to a separate thread
+                ServerClientThread sct = new ServerClientThread(serverClient,counter); //demarre le thread
                 MultithreadedSocketServer.listeCo.add(sct);
                 System.out.println(listeCo.size() + "size");
                 sct.start();

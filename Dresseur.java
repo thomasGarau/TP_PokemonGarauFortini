@@ -1,6 +1,8 @@
 import java.io.Serializable;
 import java.util.*;
 
+//dresseur est la classe representant le joueur.
+//on implemente serializable pour pouvoir le savegarder
 public class Dresseur implements Serializable {
     private String pseudo;
     private String sexe;
@@ -13,18 +15,23 @@ public class Dresseur implements Serializable {
     //le pokemon principale du dresseur celui avec lequelle il combat par défaut
     //le pokemon principale est l'index mainPokemon dans la liste listePokemon
     private int mainPokemon = 0;
+    //on fait un hashmap pour associer un bonbon a un pokemon
     private HashMap<String, Integer> bonbonPokemon = new HashMap<String, Integer>();
     private int nbPokeball = 0;
 
     public Dresseur(String pseudo, int sexe, Pokemon starter){
         this.pseudo = pseudo;
-        if(sexe ==1){
-            this.sexe = "homme";
-        }else{
-            this.sexe = "femme";
+        switch(sexe){
+            case 1:
+                this.sexe="homme";
+                break;
+            default:
+                this.sexe="femme";
+                break;
         }
         this.listePokemeon.add(starter);
         this.nbPokemon++;
+        //on assigne le starter en pokemon principal
         setMainPokemon(0);
     }
 
@@ -32,9 +39,10 @@ public class Dresseur implements Serializable {
         return this.bonbonPokemon;
     }
 
+    //utiliser lors des consomation de bonbon (évolution ou monter de niveau)
     public void removeBonbonPokemon(String nom){
         System.out.println(nom);
-        this.bonbonPokemon.put(nom, this.bonbonPokemon.get(nom) -2);
+        this.bonbonPokemon.put(nom, this.bonbonPokemon.get(nom) -5);
     }
 
     public int getNbPokeball(){
@@ -65,6 +73,10 @@ public class Dresseur implements Serializable {
         return this.pseudo;
     }
 
+    public String getSexe() {
+        return sexe;
+    }
+
     public int getWinrate(){
         if(this.victoire + this.defaite > 0){
             return ((this.victoire / (this.defaite + this.victoire)) * 100);
@@ -84,6 +96,7 @@ public class Dresseur implements Serializable {
         }
     }   
 
+    //permet de changer le pokemon qui sera un en premiere position
     public void changeMainPokemon(){
         Scanner myObj = new Scanner(System.in);
         System.out.println("veuillez taper le n° correspondant au pokemon que vous souhaiter définir comme principale");
@@ -95,9 +108,10 @@ public class Dresseur implements Serializable {
         this.setMainPokemon(value);
     }
 
+    //permet de renommer un pokemon qui vient d'etre capturé
     public void capturePokemon(Pokemon pokemon){
         Scanner myObj = new Scanner(System.in);
-        System.out.println("quelle nom souhaiter vous donner a votre" + pokemon.getNom() + "?");
+        System.out.println("quelle nom souhaiter vous donner a votre " + pokemon.getNom() + "?");
         String surnom = myObj.nextLine();
         pokemon.setSurnom(surnom);
         this.listePokemeon.add(pokemon);
@@ -114,6 +128,7 @@ public class Dresseur implements Serializable {
         }
     }
 
+    @Override
     public String toString(){
         int winrate = this.getWinrate();
         String a = "";
@@ -122,13 +137,10 @@ public class Dresseur implements Serializable {
             a+= listePokemeon.get(i) + ", ";
         }
         return (
-            "nom" + this.pseudo + "\n" +
-            "posséde " + this.nbPokemon + " Pokemon" + "\n" +
-            a + "\n" +
-            "a gagné " + this.victoire + " combat dans l'arène " + "\n" +
-            "en a perdu" + this.defaite + "\n" +
-            "winrate de " + winrate + "%" + "\n" +
-            "a pour pokemon principale " + b
+            "Nom: "+this.pseudo+"\npossède: "+this.nbPokemon+" Pokemon\n"+a+
+            "\na gagné: "+this.victoire+" combat dans l'arène\n"+
+            "a perdu: "+this.defaite+"\nwinrate de "+winrate+"%\n"+
+            "a pour pokemon principal " + b
         );
     }
 }

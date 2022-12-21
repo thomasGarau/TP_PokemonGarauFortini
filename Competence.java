@@ -1,5 +1,7 @@
 import java.io.Serializable;
 
+//les competence sont les attaques des pokemon .
+//on implemente serializable pour pouvoir les savegarder
 public class Competence implements Serializable{
     private String nom;
     private String type;
@@ -10,8 +12,7 @@ public class Competence implements Serializable{
     }
 
     public Competence(Competence competence){
-        this.nom = competence.getNom();
-        this.type = competence.getType();
+        this(competence.getNom(), competence.getType());
     }
 
     public String getNom() {
@@ -23,10 +24,7 @@ public class Competence implements Serializable{
     }
 
     public String toString(){
-        return (
-            "nom : " + this.nom + " " +
-            "type :" + this.type
-        );
+        return "nom: " +this.nom+" type: "+this.type;
     }
 
 }
