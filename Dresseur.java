@@ -77,11 +77,14 @@ public class Dresseur implements Serializable {
         return sexe;
     }
 
-    public int getWinrate(){
+    public void getWinrate(){
         if(this.victoire + this.defaite > 0){
-            return ((this.victoire / (this.defaite + this.victoire)) * 100);
+            System.out.print("nombre de victoire dans l'arène : " + this.victoire +
+                            "\nnombre de défaite : " + this.defaite +
+                            "\nwinrate : " + ((this.victoire / (this.defaite + this.victoire)) * 100));
+        }else{
+            System.out.println("Vous n'avez pas encore combattu dans l'arène");
         }
-        return 0;
     }
 
     public Pokemon getMainPokemon(){
@@ -96,7 +99,8 @@ public class Dresseur implements Serializable {
         }
     }   
 
-    //permet de changer le pokemon qui sera un en premiere position
+    //permet de changer le pokemon compagnon
+    //le pokemon compagnon est celui qui combattra pour le dresseur dans les combat dans l'arène ou lors de rencontre avec un pokemon sauvage
     public void changeMainPokemon(){
         Scanner myObj = new Scanner(System.in);
         System.out.println("veuillez taper le n° correspondant au pokemon que vous souhaiter définir comme principale");
@@ -108,7 +112,7 @@ public class Dresseur implements Serializable {
         this.setMainPokemon(value);
     }
 
-    //permet de renommer un pokemon qui vient d'etre capturé
+    //permet au joueur de nomer le pokemon capturé et l'ajoute à ca liste de pokemon
     public void capturePokemon(Pokemon pokemon){
         Scanner myObj = new Scanner(System.in);
         System.out.println("quelle nom souhaiter vous donner a votre " + pokemon.getNom() + "?");
@@ -120,6 +124,7 @@ public class Dresseur implements Serializable {
        
     }
 
+    //ajoute un bonbon de type 'nom du pokemon capturé'
     public void addBonbon(String nomPokemon){
         if(this.bonbonPokemon.containsKey(nomPokemon)){
             bonbonPokemon.put(nomPokemon, bonbonPokemon.get(nomPokemon) +1);
@@ -130,7 +135,7 @@ public class Dresseur implements Serializable {
 
     @Override
     public String toString(){
-        int winrate = this.getWinrate();
+        int winrate = ((this.victoire / (this.defaite + this.victoire)) * 100);
         String a = "";
         String b = this.listePokemeon.get(this.mainPokemon).getNom();
         for(int i=0; i< listePokemeon.size(); i++){

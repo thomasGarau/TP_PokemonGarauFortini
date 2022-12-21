@@ -129,6 +129,8 @@ public class SystemCombat {
         }
     }
 
+    //attackOnline fonctionne en acceptant en paramètre uniquement des string afin de simplifié les échange réseaux
+    //uniquement utilisé lors des combat dans l'arène
     public static int attackOnline(Pokemon pokemon, String type1, String type2){
         Scanner input3 = new Scanner(System.in);
         System.out.println("choisir un competence: ");

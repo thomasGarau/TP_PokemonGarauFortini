@@ -1,7 +1,8 @@
 import java.net.*;
 import java.io.*;
 
-//client
+//instance de client lorsqu'il décide de ce connecter à l'arène
+//TCPClient permet de connecter le dresseur à l'arène et de gérer le combat
 public class TCPClient {
 
   public TCPClient(Dresseur dresseur){
@@ -78,7 +79,9 @@ public class TCPClient {
     System.out.println("Pv de votre pokemon : " + selfHp + "; Pv du pokemon adverse " + opponentHp);
 
     //l'ordre est inverssé en fonction de permier ou second joueur
+    //après l'attaque de l'adversaire si le pokemon est ko le combat s'arrête
     while(selfHp > 0){
+      //attaque le pokemon adverse
       result = SystemCombat.attackOnline(selfPokemon, opponentType1, opponentType2);
       opponentHp -= result;
       System.out.println("vous venez d'infliger " + result + " au pokemon adverse");
@@ -86,9 +89,12 @@ public class TCPClient {
       clientMessage= String.valueOf(result);
       outStream.writeUTF(clientMessage);
       outStream.flush();
+      //après cette attaque si l'adversaire et ko le combat s'arrête
       if(opponentHp < 1){
         break;
       }
+
+      //ce fait attaquer
       result = Integer.parseInt(inStream.readUTF());
       selfHp -= result;
       System.out.println("le pokemon adverse à attaqué, votre pokemon a subit " + result + " dégats");
@@ -98,8 +104,10 @@ public class TCPClient {
     if(opponentHp < 1){
       System.out.println("Félicitation vous avez gagné!");
       dresseur.addBonbon(selfPokemon.getNom());
+      dresseur.winCombat();
     }else if(selfHp < 1){
       System.out.println("Vous avez perdu!");
+      dresseur.looseCombat();
     }else{
       System.out.println("erreur !!");
     }
@@ -148,14 +156,18 @@ public class TCPClient {
     System.out.println("Pv de votre pokemon : " + selfHp + "; Pv du pokemon adverse " + opponentHp);
 
     //l'ordre est inversé en fonction de permier ou second joueur
+    //après cette attaque si l'adversaire et ko le combat s'arrête
     while(opponentHp > 0){
+      //ce fait attaquer 
       result = Integer.parseInt(inStream.readUTF());
       selfHp -= result;
       System.out.println("le pokemon adverse à attaqué ,votre pokemon a subit " + result + " dégats");
       System.out.println("Pv restant de votre pokemon " + selfHp);
+      //après l'attaque de l'adversaire si le pokemon est ko le combat s'arrête
       if(selfHp < 1){
         break;
       }
+      //attaque l'adversaire
       result = SystemCombat.attackOnline(selfPokemon, opponentType1, opponentType2);
       opponentHp -= result;
       System.out.println("vous venez d'infliger " + result + " au pokemon adverse");
@@ -168,8 +180,10 @@ public class TCPClient {
     if(opponentHp < 1){
       System.out.println("Félicitation vous avez gagné!");
       dresseur.addBonbon(selfPokemon.getNom());
+      dresseur.winCombat();
     }else if(selfHp < 1){
       System.out.println("Vous avez perdu!");
+      dresseur.looseCombat();;
     }else{
       System.out.println("erreur !!");
     }

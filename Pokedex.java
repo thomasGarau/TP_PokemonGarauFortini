@@ -7,6 +7,7 @@ public class Pokedex {
     public Pokedex(){
 
         //initialise les moule d'instance de compétences (une par type)
+        //des copie de c'est instance seront affecter au instance de pokemons
         Competence charge=new Competence("charge", "normal");
         Competence flameche=new Competence("flameche", "feu");
         Competence bulles_do=new Competence("bulles'do", "eau");
@@ -32,6 +33,8 @@ public class Pokedex {
         ));
  
         //initialise tout les "moules" d'instance de pokemon
+        //c'est instance ne seront jamais utilisé que pour en instancier d'autre 
+        //elle ne contienne pas de pv pc ou de dresseur uniquement les caractèristique commune à chaque salaméche par exemple
         //comprend la liste des 151 premier pokemon à l'exception d'aquali pyroli voltali
         Pokemon pokemon1 = new Pokemon("bulbizarre", new ArrayList<String>(Arrays.asList("plante","poison")), 3, new ArrayList<String>(Arrays.asList("herbizarre","florizarre")));
         Pokemon pokemon2 = new Pokemon("salameche", new ArrayList<String>(Arrays.asList("feu")), 3, new ArrayList<String>(Arrays.asList("reptincel","dracaufeu")), new ArrayList<String>(Arrays.asList("3", "feu", "vol")));

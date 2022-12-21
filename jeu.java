@@ -17,10 +17,11 @@ public class jeu {
         myObj.nextLine();
 
         if(loadOrNew==1){
-            //on load une serialisation d'une precedente instance
+            //on load le fichier sauvegarde qui contient l'instance du dresseur sauvegarder
             dresseur = Sauvegarde.loadSauvegarde();
 
         }else{
+            //si non le joueur créer un nouveau dresseur
             System.out.println("Votre nom ?");
             String pseudo = myObj.nextLine();
 
@@ -52,21 +53,26 @@ public class jeu {
                                 "3: acheter des pokeballs\n" +
                                 "4: faire evoluer un pokemon\n" +
                                 "5: changer votre pokemon compagnon\n" +
-                                "6: sauvegarder\n" +
-                                "7: quiter"
+                                "6: pour afficher votre ratio de victoire dans l'arène\n" +
+                                "7: sauvegarder\n" +
+                                "8: quiter"
             );
             action = myObj.nextLine();
             switch(action){
+                
+                //capture de pokemon
                 case "1":
                     new Capture(dresseur);
                     break;
 
+                //combat arène
                 case "2":
                     // ne pas oublié de lancer le serveur avant
                     System.out.println("combat");
                     TCPClient tcpClient = new TCPClient(dresseur);
                     break;
 
+                //achat de pokeball
                 case "3":
                     System.out.println("souhaiter vous acheter des pokeballs ? 1 pts bonus au TP pour 20pokeball oui=y, non=n");
                     action = myObj.nextLine();
@@ -75,7 +81,8 @@ public class jeu {
                         System.out.println("vous recevez 20 pokeballs, vous en avez désormais " + dresseur.getNbPokeball());
                     }
                     break;
-
+                
+                //evolution de pokemon
                 case "4":
                     System.out.println("à quel pokemon souhaiter vous donner un bonbon ?");
                     int j = 0;
@@ -89,7 +96,8 @@ public class jeu {
                     }
                     dresseur.getListePokemon().get(Integer.parseInt(action)).evoluer();
                     break;
-
+                
+                //changement du pokemon compagnon
                 case "5":
                     int i;
                     for(i=0; i< dresseur.getListePokemon().size(); i++){
@@ -103,12 +111,19 @@ public class jeu {
                     dresseur.setMainPokemon(Integer.parseInt(action));
                     System.out.println("nouveau compagnon = " + dresseur.getMainPokemon().getNom());
                     break;
-
+                
+                //affichage du taux de victoire dans l'arène
                 case "6":
+                    dresseur.getWinrate();
+                    break;
+                
+                //sauvegarde la partie (serialise le dresseur)
+                case "7":
                     Sauvegarde.sauvegarde(dresseur);
                     break;
-
-                case "7":
+                
+                //quite la partie
+                case "8":
                     System.out.println("Aurevoir");
                     return;
             }

@@ -13,6 +13,7 @@ public class Pokemon implements Serializable{
     private ArrayList <String> changement=new ArrayList<>(2);
     private Dresseur dresseur; 
     private ArrayList <Competence> competence = new ArrayList<>(4);
+    //le surnom permet de différencié deux exemplaire d'un même pokemon posséder par le dresseur
     private String surnom;    
     
 
@@ -40,10 +41,13 @@ public class Pokemon implements Serializable{
     }
 
     //constructeur d'instance pokemon reel
+    //instance réel posséde des pc et pv. De plus un dresseur leurs seras ajouté.
     public Pokemon(Pokemon pokemon){
         this(pokemon.getNom(), pokemon.getType(), pokemon.getEVO_MAX(), pokemon.getNext_evo(), pokemon.getChangement());
         Random r =new Random();
+        //pc compris entre 10 et 30
         this.pc = 10 + r.nextInt(20);
+        //pv compris entre 50 et 100
         this.pv = 50 + r.nextInt(50);
     }
 
@@ -109,7 +113,9 @@ public class Pokemon implements Serializable{
             if(stade_evo<EVO_MAX){
                 nom=next_evo.get(stade_evo-1);
                 stade_evo+=1;
+                //ajoute entre 4 et 7 pv
                 pc+= 4 + r.nextInt(3);
+                //ajoute entre 12 et 24 hp
                 pv+= 12 + r.nextInt(12);
                 if(!(changement.isEmpty())){
                     if(stade_evo==Integer.parseInt(changement.get(0))){
@@ -122,11 +128,14 @@ public class Pokemon implements Serializable{
                 System.out.println(this);
             }
             else{
+                //ajoute entre 1 et 2 pc
                 pc+= 1 + r.nextInt(1);
+                //ajoute entre 2 et 5 pv
                 pv+= 2 + r.nextInt(3);
                 System.out.println("votre pokemon a monté de niveau, nouvelle stats:\n");
                 System.out.println(this);
             }
+            //retire au dresseur les 5bonbon
             this.dresseur.removeBonbonPokemon(name);
         }else{
             System.out.println("pas assez de bonbon pour faire évoluer ce pokemon ");
@@ -134,6 +143,7 @@ public class Pokemon implements Serializable{
     }
     
     //assigne une attaque de base en accord avec le(s) type(s) du pokemon
+    //tous les pokemon posséderons une compétence de type normale + une par type posséder
     public void assignComp(String type){
 
         if(type.equals("normal")){

@@ -11,7 +11,7 @@ public class Capture {
         this.dresseur = dresseur;
         Random r =new Random();
         int a  = r.nextInt(3);
-        // le dresseur a une chance sur trois de tomber un pokemon
+        // le dresseur a une chance sur trois de tomber sur un pokemon
         if (a > 1){
             int i = 1 + r.nextInt(Pokedex.getPokedex().size());
             createPokemon(dresseur, Pokedex.getPokedex().get(i));
@@ -38,6 +38,8 @@ public class Capture {
         int choix = 0;
         boolean cont=true;
 
+        //le dresseur peut à chaque tour soit attaquer le pokemon, soit essayer le capturer ou bien il peut décider de fuire.
+        //le pokemon sauvage quant à lui répond à chaque tour par une attaque aleatoire parmis ses compétences.
         while (cont){            
             System.out.println("\nfaite votre choix! 1:attaque  2:pokeball 3:fuite ");
             
@@ -46,6 +48,7 @@ public class Capture {
             double resultat;
 
             switch(choix){
+                //choix d'attaquer
                 case 1:
                     resultat = SystemCombat.attack(dresseur.getMainPokemon(), pokemon);
                     this.pokemonSauvageHp -= resultat;
@@ -66,20 +69,23 @@ public class Capture {
                     }
                     System.out.print("Pv restant de votre pokemon : " + this.pokemonDresseurHp+"\n");
                     break;
+                //choix capture
                 case 2:
-                    //revient a faire 100 - le pourcentage soit le pourcentage inverse
-                    //et 0.8 le taux de capture max * le pourcentage inversse c'est a dire plus le pourcentage est bas plus le taux de capture est elevé
-                    //et cela car moins le pokemon a de pv + on a de chance de le capturer 
-                    if(dresseur.getNbPokeball() > 1){
+                    //vérfie que le dresseur posséde assez de pokeball est lui en retire une
+                    if(dresseur.getNbPokeball() >= 1){
                         dresseur.throwPokeball();
+                        // pourcentage compris 15 et 80 % en fonction des hp restant du pokemon sauvage
+                        // plus les pv sont bas plus le taux de capture augmente.
                         double tauxCapture = (0.8 * ((100 - ((this.pokemonSauvageHp / this.pokemonSauvageHpMax) * 100))/100)) * 100;
                         int aleatoire = r.nextInt(100);
+                        // si le taux de capture et supérieur ou égale au nombre aléatoire alors le pokemon est capturé.
                         if (aleatoire <= tauxCapture){
                             System.out.println("félicitation! vous avez capturer le pokemon\n");
                             dresseur.capturePokemon(this.pokemon);
                             pokemon.setDresseur(dresseur);
                             return; 
                         }
+                        //si non le combat continu
                         else{
                             System.out.println("le pokemon est sortie de la pokeball!");
                             resultat = SystemCombat.attackAuto(pokemon, dresseur.getMainPokemon());
@@ -95,6 +101,8 @@ public class Capture {
                         System.out.println("nombre de pokeballs insufisant\n");
                     }
                     break;
+                //choix de fuire
+                //le combat est annulé le pokemon est détruit 
                 case 3:
                     System.out.print("Vous prennez la fuite \n");
                     this.pokemon = null;
