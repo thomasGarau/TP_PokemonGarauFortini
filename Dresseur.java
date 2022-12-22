@@ -2,20 +2,20 @@ import java.io.Serializable;
 import java.util.*;
 
 //dresseur est la classe representant le joueur.
-//on implemente serializable pour pouvoir le savegarder
+//on implemente serializable pour pouvoir le sauvegarder
 public class Dresseur implements Serializable {
     private String pseudo;
     private String sexe;
     private int nbPokemon = 0;
-    //nombre de victoire dans l'arène
+    //nombre de victoires dans l'arène
     private int victoire = 0; 
-    //nombre de défaite dans l'arène
+    //nombre de défaites dans l'arène
     private int defaite = 0;
     private ArrayList<Pokemon> listePokemeon = new ArrayList<>();
-    //le pokemon principale du dresseur celui avec lequelle il combat par défaut
-    //le pokemon principale est l'index mainPokemon dans la liste listePokemon
+    //le pokemon principal du dresseur celui avec lequel il combat par défaut
+    //le pokemon principal est l'index mainPokemon dans la liste listePokemon
     private int mainPokemon = 0;
-    //on fait un hashmap pour associer un bonbon a un pokemon
+    //on fait un hashmap pour associer un bonbon à un pokemon
     private HashMap<String, Integer> bonbonPokemon = new HashMap<String, Integer>();
     private int nbPokeball = 0;
 
@@ -39,7 +39,7 @@ public class Dresseur implements Serializable {
         return this.bonbonPokemon;
     }
 
-    //utiliser lors des consomation de bonbon (évolution ou monter de niveau)
+    //utiliser lors des consommations de bonbons (évolution ou monter de niveau)
     public void removeBonbonPokemon(String nom){
         System.out.println(nom);
         this.bonbonPokemon.put(nom, this.bonbonPokemon.get(nom) -5);
@@ -100,7 +100,7 @@ public class Dresseur implements Serializable {
     }   
 
     //permet de changer le pokemon compagnon
-    //le pokemon compagnon est celui qui combattra pour le dresseur dans les combat dans l'arène ou lors de rencontre avec un pokemon sauvage
+    //le pokemon compagnon est celui qui combattra pour le dresseur dans les combats dans l'arène ou lors de rencontres avec un pokemon sauvage
     public void changeMainPokemon(){
         Scanner myObj = new Scanner(System.in);
         System.out.println("veuillez taper le n° correspondant au pokemon que vous souhaiter définir comme principale");
@@ -112,7 +112,7 @@ public class Dresseur implements Serializable {
         this.setMainPokemon(value);
     }
 
-    //permet au joueur de nomer le pokemon capturé et l'ajoute à ca liste de pokemon
+    //permet au joueur de nommer le pokemon capturé et l'ajoute à sa liste de pokemon
     public void capturePokemon(Pokemon pokemon){
         Scanner myObj = new Scanner(System.in);
         System.out.println("quelle nom souhaiter vous donner a votre " + pokemon.getNom() + "?");

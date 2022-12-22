@@ -7,14 +7,14 @@ public class MultithreadedSocketServer {
     public static ArrayList <ServerClientThread> listeCo = new ArrayList<>();
     public static ArrayList <ServerClientThread> attente = new ArrayList<>();
 
-    //envoi d'un message a tous les clients
+    //envoi d'un message à tous les clients
     public static void broadcast() {
         for(ServerClientThread i :listeCo){
             i.fromServer("le combat va debuter ..");
         }
     }
 
-    //permet de renomer un thread pour differencier les joueurs
+    //permet de renommer un thread pour differencier les joueurs
     public static void rename(Socket nomsSocket,String name){
         for(ServerClientThread i: listeCo){
             if(i.serverClient.equals(nomsSocket)){
@@ -23,7 +23,7 @@ public class MultithreadedSocketServer {
         }
     }
 
-    //envoi d'un message a un seul joueur
+    //envoi d'un message à un seul joueur
     public static void  messagePerso(String nomsSocket,ServerClientThread expediteur,String message){
         for(ServerClientThread i: listeCo){
             System.out.println(i.getName());
@@ -34,7 +34,7 @@ public class MultithreadedSocketServer {
     }
 
 
-    //la fonction decide qui commencera premier et declanche le cobat dans les TCP
+    //la fonction decide qui commencera premier et declanche le combat dans les TCP
     //cela est déterminé à pile ou face
     public static void arene(ServerClientThread joueur){
         attente.add(joueur); 
@@ -51,7 +51,7 @@ public class MultithreadedSocketServer {
                 j1=attente.get(0);
                 j2=attente.get(1);
             }
-            //modifie l'attribue adverssaire du ServerThread afin qu'il connaisse le thread de sont adverssaire pour utilisé la fonction MessagePerso
+            //modifie l'attribut adversaire du ServerThread afin qu'il connaisse le thread de son adversaire pour utiliser la fonction MessagePerso
             j1.setAdverssaire(j2.getName());
             j2.setAdverssaire(j1.getName());
             j1.fromServer("premier");
@@ -64,7 +64,7 @@ public class MultithreadedSocketServer {
         }
     }
 
-    //renvoi la liste des joueur dans un format lisible
+    //renvoi la liste des joueurs dans un format lisible
     public static String format(){
         String mess="";
         for(ServerClientThread i:listeCo){
@@ -72,7 +72,7 @@ public class MultithreadedSocketServer {
         }
         return mess;
     }
-    //le serveur enregistre les joueur qui se connecte et les stocke dans une liste puis 
+    //le serveur enregistre les joueurs qui se connectent et les stocke dans une liste puis 
     //demarre un thread pour chaque joueur
     public static void main(String[] args) throws Exception {
         try{

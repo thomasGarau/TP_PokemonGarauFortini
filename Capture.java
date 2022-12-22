@@ -6,7 +6,7 @@ public class Capture {
     private double pokemonSauvageHpMax;
     private double pokemonDresseurHp;
 
-    //demarre une rencontre avec un pokemon de stade1 aléatoire
+    //démarre une rencontre avec un pokemon de stade 1 aléatoire
     public Capture(Dresseur dresseur){
         this.dresseur = dresseur;
         Random r =new Random();
@@ -22,7 +22,7 @@ public class Capture {
         }
     }
 
-    //la fonction cree un pokemon avec un attribut dresseur pour qu'il soit capturable
+    //la fonction crée un pokemon avec un attribut dresseur pour qu'il soit capturable
     public void createPokemon(Dresseur dresseur, Pokemon pokemon){
         this.pokemon = new Pokemon(pokemon);
         this.pokemonSauvageHp = this.pokemon.getpv();
@@ -38,7 +38,7 @@ public class Capture {
         int choix = 0;
         boolean cont=true;
 
-        //le dresseur peut à chaque tour soit attaquer le pokemon, soit essayer le capturer ou bien il peut décider de fuire.
+        //le dresseur peut à chaque tour soit attaquer le pokemon, soit essayer de le capturer ou bien il peut décider de fuir.
         //le pokemon sauvage quant à lui répond à chaque tour par une attaque aleatoire parmis ses compétences.
         while (cont){            
             System.out.println("\nfaite votre choix! 1:attaque  2:pokeball 3:fuite ");
@@ -71,14 +71,14 @@ public class Capture {
                     break;
                 //choix capture
                 case 2:
-                    //vérfie que le dresseur posséde assez de pokeball est lui en retire une
+                    //vérfie que le dresseur possède assez de pokeball et lui en retire une
                     if(dresseur.getNbPokeball() >= 1){
                         dresseur.throwPokeball();
                         // pourcentage compris 15 et 80 % en fonction des hp restant du pokemon sauvage
                         // plus les pv sont bas plus le taux de capture augmente.
                         double tauxCapture = (0.8 * ((100 - ((this.pokemonSauvageHp / this.pokemonSauvageHpMax) * 100))/100)) * 100;
                         int aleatoire = r.nextInt(100);
-                        // si le taux de capture et supérieur ou égale au nombre aléatoire alors le pokemon est capturé.
+                        // si le taux de capture est supérieur ou égal au nombre aléatoire alors le pokemon est capturé.
                         if (aleatoire <= tauxCapture){
                             System.out.println("félicitation! vous avez capturer le pokemon\n");
                             dresseur.capturePokemon(this.pokemon);
@@ -101,7 +101,7 @@ public class Capture {
                         System.out.println("nombre de pokeballs insufisant\n");
                     }
                     break;
-                //choix de fuire
+                //choix de fuir
                 //le combat est annulé le pokemon est détruit 
                 case 3:
                     System.out.print("Vous prennez la fuite \n");

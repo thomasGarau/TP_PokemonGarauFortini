@@ -17,11 +17,11 @@ public class jeu {
         myObj.nextLine();
 
         if(loadOrNew==1){
-            //on load le fichier sauvegarde qui contient l'instance du dresseur sauvegarder
+            //on load le fichier sauvegarde qui contient l'instance du dresseur sauvegardée
             dresseur = Sauvegarde.loadSauvegarde();
 
         }else{
-            //si non le joueur créer un nouveau dresseur
+            //si non le joueur crée un nouveau dresseur
             System.out.println("Votre nom ?");
             String pseudo = myObj.nextLine();
 
@@ -67,7 +67,7 @@ public class jeu {
 
                 //combat arène
                 case "2":
-                    // ne pas oublié de lancer le serveur avant
+                    // ne pas oublier de lancer le serveur avant
                     System.out.println("combat");
                     TCPClient tcpClient = new TCPClient(dresseur);
                     break;
@@ -122,7 +122,7 @@ public class jeu {
                     Sauvegarde.sauvegarde(dresseur);
                     break;
                 
-                //quite la partie
+                //quitte la partie
                 case "8":
                     System.out.println("Aurevoir");
                     return;

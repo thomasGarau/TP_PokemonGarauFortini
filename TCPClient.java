@@ -1,7 +1,7 @@
 import java.net.*;
 import java.io.*;
 
-//instance de client lorsqu'il décide de ce connecter à l'arène
+//instance de client lorsqu'il décide de se connecter à l'arène
 //TCPClient permet de connecter le dresseur à l'arène et de gérer le combat
 public class TCPClient {
 
@@ -17,13 +17,13 @@ public class TCPClient {
       outStream.writeUTF(clientMessage);
       outStream.flush();
 
-      //demande de combattre dans l'arène est attend qu'un adversaire rejoigne 
+      //demande de combattre dans l'arène et attend qu'un adversaire rejoigne 
       clientMessage="combat";
       outStream.writeUTF(clientMessage);
       outStream.flush();
       serverMessage=inStream.readUTF();
       System.out.println("vous venez d'entrer dans l'arène. Le combat commencera dès qu'un adversaire rejoindra");
-      //le server désigne qui joueras en premier et qui joueras en second à pile ou face
+      //le server désigne qui jouera en premier et qui jouera en second à pile ou face
 
       if(serverMessage.equals("premier")){
         System.out.println(serverMessage);
@@ -43,7 +43,7 @@ public class TCPClient {
 
   //fonction combat si premier joueur
   public void combat1(Dresseur dresseur, Socket socket) throws NumberFormatException, IOException{
-    //initialise les fonction de communication avec le server
+    //initialise les fonctions de communication avec le server
     DataInputStream inStream=new DataInputStream(socket.getInputStream());
     DataOutputStream outStream=new DataOutputStream(socket.getOutputStream());
     String clientMessage="";
@@ -52,7 +52,7 @@ public class TCPClient {
     int selfHp = selfPokemon.getpv();
     int result = 0;
     
-    //envoie les information de sont pokemon à l'adversaire
+    //envoie les informations de son pokemon à l'adversaire
     outStream.writeUTF(String.valueOf(selfHp));
     outStream.flush();
     outStream.writeUTF(selfPokemon.getType().get(0));
@@ -66,7 +66,7 @@ public class TCPClient {
     }
     outStream.writeUTF(selfPokemon.getNom());
 
-    //recois les information du pokemon adverse
+    //recois les informations du pokemon adverse
     int opponentHp = Integer.parseInt(inStream.readUTF());
     String opponentType1 = inStream.readUTF();
     String opponentType2 = inStream.readUTF();
@@ -94,7 +94,7 @@ public class TCPClient {
         break;
       }
 
-      //ce fait attaquer
+      //se fait attaquer
       result = Integer.parseInt(inStream.readUTF());
       selfHp -= result;
       System.out.println("le pokemon adverse à attaqué, votre pokemon a subit " + result + " dégats");
@@ -118,7 +118,7 @@ public class TCPClient {
   public void combat2(Dresseur dresseur, Socket socket) throws NumberFormatException, IOException{
 
 
-    //initialise les fonction de communication avec le server
+    //initialise les fonctions de communication avec le server
     DataInputStream inStream=new DataInputStream(socket.getInputStream());
     DataOutputStream outStream=new DataOutputStream(socket.getOutputStream());
     String clientMessage="";
@@ -134,7 +134,7 @@ public class TCPClient {
     String opponentType2 = inStream.readUTF();
     String opponentPokemon = inStream.readUTF();
 
-    //envoie les information de sont pokemon à l'adversaire
+    //envoie les information de son pokemon à l'adversaire
     outStream.writeUTF(String.valueOf(selfHp));
     outStream.flush();
     outStream.writeUTF(selfPokemon.getType().get(0));
@@ -156,7 +156,7 @@ public class TCPClient {
     System.out.println("Pv de votre pokemon : " + selfHp + "; Pv du pokemon adverse " + opponentHp);
 
     //l'ordre est inversé en fonction de permier ou second joueur
-    //après cette attaque si l'adversaire et ko le combat s'arrête
+    //après cette attaque si l'adversaire est ko le combat s'arrête
     while(opponentHp > 0){
       //ce fait attaquer 
       result = Integer.parseInt(inStream.readUTF());

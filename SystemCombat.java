@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class SystemCombat {
-    //chaque lignes et colonnes represnte un type
+    //chaque ligne et colonne represente un type
     //1 pour pas d'effet ,0.5 resistance,2 super efficace
     private final static double[][] tableType=
     {
@@ -26,7 +26,7 @@ public class SystemCombat {
    
     private static ArrayList <Integer> type_def=new ArrayList<Integer>(2);
 
-    //on asssocie chaque type a un numero pour acceder a 
+    //on asssocie chaque type à un numero pour acceder à 
     //la matrice des resistances
     public static int getNum(String type){
         if(type.equals("normal")){
@@ -91,7 +91,7 @@ public class SystemCombat {
         return type_def;
     }
 
-    //attack et utilisé par les dresseur ils choisissent leur attack est le calcule de dégat et effectué 
+    //attack est utilisée par les dresseurs, ils choisissent leur attack et le calcul de dégat est effectué 
     public static double attack(Pokemon att,Pokemon def){
         Scanner input3 = new Scanner(System.in);
         System.out.println("choisir un competence: ");
@@ -112,7 +112,7 @@ public class SystemCombat {
         
     }
 
-    // attackAuto est utilisé par les pokemon sauvage il effectue des attack au hasard dans leur liste de compétence
+    // attackAuto est utilisé par les pokemon sauvage ils effectuent des attack au hasard dans leur liste de compétence
     public static double attackAuto(Pokemon att,Pokemon def){
         Random r =new Random();
         int input = r.nextInt(att.getCompetence().size());
@@ -129,8 +129,8 @@ public class SystemCombat {
         }
     }
 
-    //attackOnline fonctionne en acceptant en paramètre uniquement des string afin de simplifié les échange réseaux
-    //uniquement utilisé lors des combat dans l'arène
+    //attackOnline fonctionne en acceptant en paramètre uniquement des string afin de simplifier les échanges réseaux
+    //uniquement utilisé lors des combats dans l'arène
     public static int attackOnline(Pokemon pokemon, String type1, String type2){
         Scanner input3 = new Scanner(System.in);
         System.out.println("choisir un competence: ");

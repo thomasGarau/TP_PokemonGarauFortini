@@ -6,8 +6,8 @@ public class Pokedex {
     
     public Pokedex(){
 
-        //initialise les moule d'instance de compétences (une par type)
-        //des copie de c'est instance seront affecter au instance de pokemons
+        //initialise les moules d'instance de compétences (une par type)
+        //des copies de ces instances seront affectées aux instances de pokemons
         Competence charge=new Competence("charge", "normal");
         Competence flameche=new Competence("flameche", "feu");
         Competence bulles_do=new Competence("bulles'do", "eau");
@@ -26,16 +26,16 @@ public class Pokedex {
         Competence machouille=new Competence("machouille", "ténèbres");
         Competence gyroballe=new Competence("gyroballe", "acier");
 
-        //ajoute toute les compétences à la liste de compétence
+        //ajoute toutes les compétences à la liste de compétences
         listeCompetence = new ArrayList<>(Arrays.asList(
             charge, flameche, bulles_do,tranch_herbe, eclair, poing_glace, balayette, dard_venin,tunnel,
             picpic, psyko, dard_nue, eboulement, griffe_ombre, draco_griffe, machouille, gyroballe
         ));
  
         //initialise tout les "moules" d'instance de pokemon
-        //c'est instance ne seront jamais utilisé que pour en instancier d'autre 
-        //elle ne contienne pas de pv pc ou de dresseur uniquement les caractèristique commune à chaque salaméche par exemple
-        //comprend la liste des 151 premier pokemon à l'exception d'aquali pyroli voltali
+        //ces instances ne seront jamais utilisés que pour en instancier d'autres
+        //elles ne contiennent pas de pv pc ou de dresseur uniquement les caractèristique commune à chaque salaméche par exemple
+        //comprend la liste des 151 premiers pokemon à l'exception d'aquali pyroli voltali
         Pokemon pokemon1 = new Pokemon("bulbizarre", new ArrayList<String>(Arrays.asList("plante","poison")), 3, new ArrayList<String>(Arrays.asList("herbizarre","florizarre")));
         Pokemon pokemon2 = new Pokemon("salameche", new ArrayList<String>(Arrays.asList("feu")), 3, new ArrayList<String>(Arrays.asList("reptincel","dracaufeu")), new ArrayList<String>(Arrays.asList("3", "feu", "vol")));
         Pokemon pokemon3 = new Pokemon("carapuce", new ArrayList<String>(Arrays.asList("eau")) , 3, new ArrayList<String>(Arrays.asList("carabaffe","tortank")));

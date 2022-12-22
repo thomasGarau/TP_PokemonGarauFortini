@@ -1,7 +1,7 @@
 import java.io.Serializable;
 
-//les competence sont les attaques des pokemon .
-//on implemente serializable pour pouvoir les savegarder
+//les competences sont les attaques des pokemon.
+//on implémente serializable pour pouvoir les sauvegarder
 public class Competence implements Serializable{
     private String nom;
     private String type;
